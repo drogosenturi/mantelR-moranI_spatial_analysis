@@ -1,4 +1,4 @@
-setwd("~/soraida_r/Dummy2")
+setwd("~/mantel_lab")
 ## Create function to load all packages
 loadPackages <- function(packages) {
     lapply(c("data.table",
@@ -60,7 +60,7 @@ fill_in_coords <- function(i) {
     )
 }
 dffin <- lapply(1:2, fill_in_coords)
-length(as.data.frame(dffin[[2]])[,1]) # check length
+#length(as.data.frame(dffin[[2]])[,1]) # check length
 
 # make list of patch distance matrices
 make_pdist <- function(i) {
@@ -69,6 +69,7 @@ make_pdist <- function(i) {
         vegdist(cbind(df_temp$P.xcor, df_temp$P.ycor),"euclid")
     )
 }
+patch_dists <- lapply(1:2, make_pdist)
 
 # make list of species distance matrices
 make_sdist <- function(i) {
@@ -108,7 +109,7 @@ system.time(v_result <- lapply(1, mantel_vegan))
 
 ## save as object for later use
 # should contain list of all mantel results for x amount of files
-saveRDS(v_result, "test_result.rds")
+saveRDS(v_result, "test_result1.rds")
 
 
 # global mantel with ade4
