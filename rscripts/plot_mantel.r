@@ -1,0 +1,8 @@
+setwd('~/soraida_r/mantel_analysis')
+library(vegan)
+results <- readRDS('test_result1.rds')
+print(results[[1]])
+plot(results[[1]])
+jpeg("test_plot.jpg")
+results[[1]] |> plot()
+dev.off()
