@@ -82,8 +82,11 @@ species_dists <- lapply(1:2, make_sdist)
 
 # remove NaN
 remove_NaN <- function(i) {
-    temp <- as.dist(species_dists[[i]])
+    temp <- species_dists[[i]]
     temp[is.nan(temp)] <- 0
+    return(
+        temp
+    )
 }
 species_dists <- lapply(1:2, remove_NaN)
 #is.nan(as.dist(species_dists[[1]])) #check
