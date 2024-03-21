@@ -1,4 +1,4 @@
-setwd("~/soraida_r/mantel_analysis/nursery_files/")
+setwd("~/mantel_lab/nursery_files/")
 ## Create function to load all packages
 loadPackages <- function(packages) {
     lapply(c("data.table", "parallel",
@@ -25,7 +25,7 @@ head(df_patches)
 load_df <- function(z) {
     fread(file_path[z])
 }
-df_list <- mclapply(1:15, load_df, mc.cores = 15)
+df_list <- mclapply(1:10, load_df, mc.cores = 15)
 
 # make list of new dfs with just species id and patchid
 # and coordinates
@@ -51,7 +51,7 @@ to_SO <- function(i) {
                         values_fill = 0)
     )
 }
-dfSO <- mclapply(1:15, to_SO, mc.cores = 15)
+dfSO <- mclapply(1:10, to_SO, mc.cores = 15)
 
 # fill in missing coordinates for all df in dfSO
 fill_in_coords <- function(i) {
@@ -62,7 +62,7 @@ fill_in_coords <- function(i) {
         joined
     )
 }
-dffin <- mclapply(1:15, fill_in_coords, mc.cores = 15)
+dffin <- mclapply(1:10, fill_in_coords, mc.cores = 15)
 #length(as.data.frame(dffin[[7]])[,1]) # check length
 
 # make list of patch distance matrices
@@ -81,7 +81,7 @@ make_sdist <- function(i) {
         vegdist(df_temp[-(1:3)]) # method bray
     )
 }
-species_dists <- mclapply(1:15, make_sdist, mc.cores = 15)
+species_dists <- mclapply(1:10, make_sdist, mc.cores = 15)
 
 # remove NaN
 remove_NaN <- function(i) {
@@ -91,7 +91,7 @@ remove_NaN <- function(i) {
         temp
     )
 }
-species_dists <- mclapply(1:15, remove_NaN, mc.cores = 15)
+species_dists <- mclapply(1:10, remove_NaN, mc.cores = 15)
 #is.nan(as.dist(species_dists[[1]])) #check
 
 # clean up the garbage
@@ -111,11 +111,11 @@ mantel_vegan <- function(i) {
         result
     )
 }
-system.time(v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10))
+system.time(v_result <- mclapply(1:5, mantel_vegan, mc.cores = 5))
 
 ## save as object for later use
 # should contain list of all mantel results for x amount of files
-saveRDS(v_result, "test_result1.rds")
+saveRDS(v_result, "test_result2.rds")
 
 
 # global mantel with ade4
