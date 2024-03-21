@@ -102,7 +102,7 @@ gc()
 break_points <- seq(0, 50, by = 2)
 
 # try out plan
-#plan(multisession, workers = 7)
+plan(multisession, workers = 7)
 
 # local mantel correlogram with vegan
 mantel_vegan <- function(i) {
@@ -114,25 +114,25 @@ mantel_vegan <- function(i) {
         result
     )
 }
-#system.time(future(v_result <- lapply(1:7, mantel_vegan)))
+system.time(future(v_result <- lapply(1:7, mantel_vegan)))
 
-system.time(v_result <- mclapply(1:7, mantel_vegan, mc.cores = 7))
+#system.time(v_result <- mclapply(1:7, mantel_vegan, mc.cores = 7))
 
 ## save as object for later use
 # contains list of all mantel results for x amount of files
 saveRDS(v_result, "local_result1-7.rds")
 
 # global mantel analysis
-mantel_global <- function(i) {
-    result <- mantel(
-        species_dists[[i]],
-        patch_dists[[i]]
-        )
-    return(
-        result
-    )
-}
-system.time(g_result <- mclapply(1:7, mantel_global, mc.cores = 7))
+#mantel_global <- function(i) {
+#    result <- mantel(
+#        species_dists[[i]],
+#        patch_dists[[i]]
+#        )
+#    return(
+#        result
+#    )
+#}
+#system.time(g_result <- mclapply(1:7, mantel_global, mc.cores = 7))
 
 # save result
-saveRDS(g_result, "global_result1-7.rds")
+#saveRDS(g_result, "global_result1-7.rds")

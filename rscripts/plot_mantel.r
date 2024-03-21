@@ -11,7 +11,7 @@ plots <- function(i) {
         output
     )
 }
-pdf("plots/test_plots_2", onefile = TRUE)
+pdf("plots/test_plots_2.pdf", onefile = TRUE)
 lapply(1:7, plots)
 dev.off()
 
