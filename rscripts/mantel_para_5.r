@@ -117,3 +117,4 @@ system.time(v_result <- mclapply(1:7, mantel_vegan, mc.cores = 7))
 # should contain list of all mantel results for x amount of files
 saveRDS(v_result, "test_result2.rds")
 message("finished ", Sys.time())
+q()
