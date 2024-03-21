@@ -1,7 +1,7 @@
 setwd("~/mantel_lab/nursery_files/")
 ## Create function to load all packages
 loadPackages <- function(packages) {
-    lapply(c("data.table", "parallel", "future",
+    lapply(c("data.table", "parallel",
              "tidyr", "dplyr", "vegan"),
              require, character.only = TRUE)
 }
@@ -99,47 +99,21 @@ rm(list = c("df_list", "dff", "dffin", "file_path", "df_patches","dfSO"))
 gc()
 
 # make break points
-break_points <- seq(0, 50, by = 2)
-
-# try out plan
-#plan(multisession, workers = 7)
+break_points <- seq(0, 51, by = 3)
 
 # local mantel correlogram with vegan
 mantel_vegan <- function(i) {
-    result <- mantel.correlog(as.dist(species_dists[[i]]),
-                              D.geo = as.dist(patch_dists[[i]]),
+    result <- mantel.correlog(species_dists[[i]],
+                              D.geo = patch_dists[[i]],
                               break.pts = break_points,
                               cutoff = FALSE, nperm=100)
     return(
         result
     )
 }
-#system.time(future(v_result <- lapply(1:7, mantel_vegan)))
-
 system.time(v_result <- mclapply(1:7, mantel_vegan, mc.cores = 7))
 
 ## save as object for later use
 # should contain list of all mantel results for x amount of files
 saveRDS(v_result, "test_result2.rds")
-
-
-# global mantel with ade4
-#library(ade4) #package w/ mantel test in it
-#mantel <- function(i) {
-#    patch_temp <- as.dist(patch_dists[[i]])
-#    species_temp <- as.dist(species_dists[[i]])
-#    return (
-#        df_plot <- mantel.rtest(patch_temp, species_temp,
-#                                nrepet = 2)
-#    )
-#}
-#resultx <- lapply(1, mantel)
-
-# plot
-#mantel_result <- readRDS("result(x).rds")
-#library(ggplot2)
-#plot_mantel <- function(i) {
-#    png(file = "~/soraida_r/test.png")
-#    plot(result[[i]], main = "Mantel's test")
-#    dev.off()
-#}
+message("finished ", Sys.time())
