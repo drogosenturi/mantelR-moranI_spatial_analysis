@@ -103,9 +103,9 @@ break_points <- seq(0, 50, by = 2)
 
 # try out plan
 plan(multisession, workers = 7)
-
+options(future.globals.maxSize = 10 * 1e9)
 # local mantel correlogram with vegan
-mantel_vegan <- function(i) {
+mantel_vegan <- future(function(i) {
     result <- mantel.correlog(as.dist(species_dists[[i]]),
                               D.geo = as.dist(patch_dists[[i]]),
                               break.pts = break_points,
@@ -113,8 +113,9 @@ mantel_vegan <- function(i) {
     return(
         result
     )
-}
-system.time(future(v_result <- lapply(1:7, mantel_vegan)))
+})
+system.time(v_result <- mantel_vegan(1:7))
+#system.time(future(v_result <- lapply(1:7, mantel_vegan)))
 
 #system.time(v_result <- mclapply(1:7, mantel_vegan, mc.cores = 7))
 
