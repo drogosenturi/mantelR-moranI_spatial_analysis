@@ -94,27 +94,30 @@ remove_NaN <- function(i) {
 species_dists <- mclapply(1:10, remove_NaN, mc.cores = 10)
 #is.nan(as.dist(species_dists[[1]])) #check
 
+# make standalone patch_dist
+patch_dists_1 <- as.dist(patch_dists[[1]])
+
 # clean up the garbage
-rm(list = c("df_list", "dff", "dffin", "file_path", "df_patches","dfSO"))
+rm(list = c("df_list", "dff", "dffin", "file_path", "df_patches","dfSO","patch_dists"))
 gc()
 
 # make break points
-break_points <- seq(0, 51, by = 3)
+break_points <- seq(0, 30, by = 3)
 
 # local mantel correlogram with vegan
 mantel_vegan <- function(i) {
     result <- mantel.correlog(species_dists[[i]],
-                              D.geo = patch_dists[[i]],
+                              D.geo = patch_dists_1,
                               break.pts = break_points,
                               cutoff = FALSE, nperm=100)
     return(
         result
     )
 }
-system.time(v_result <- mclapply(1:7, mantel_vegan, mc.cores = 7))
+system.time(v_result <- mclapply(1:9, mantel_vegan, mc.cores = 9))
 
 ## save as object for later use
 # should contain list of all mantel results for x amount of files
-saveRDS(v_result, "test_result2.rds")
+saveRDS(v_result, "test_result_1-10.rds")
 message("finished ", Sys.time())
 q()
