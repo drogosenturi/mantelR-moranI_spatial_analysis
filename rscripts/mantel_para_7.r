@@ -1,5 +1,5 @@
-##              BEST LOCAL MANTEL WITH XY COORDS             ##
-message("start ", Sys.time())
+##              LOCAL MANTEL WITH XY COORDS AND SOCK CLUSTER             ##
+# uses more memory :(
 #setwd("~/mantel_lab/nursery_files/")
 setwd("~/soraida_r/mantel_analysis/nursery_files/")
 ## Create function to load all packages
@@ -100,6 +100,7 @@ break_points <- seq(0, 30, by = 2)
 
 # local mantel correlogram with vegan
 mantel_vegan <- function(i) {
+    require(vegan)
     result <- mantel.correlog(species_dists[[i]],
                               XY = df_patches,
                               break.pts = break_points,
@@ -108,7 +109,13 @@ mantel_vegan <- function(i) {
         result
     )
 }
-v_result <- mclapply(1:2, mantel_vegan, mc.cores = 2)
+# try a cluster instead of mclapply
+system.time({
+    cl <- makeCluster(2)
+    clusterExport(cl, c("species_dists", "df_patches", "break_points"))
+    v_result <- parLapply(cl, 1:2, mantel_vegan)
+})
+stopCluster(cl)
 
 ## save as object for later use
 # contains list of all mantel results for x amount of files
@@ -128,6 +135,3 @@ saveRDS(v_result, "~/soraida_r/mantel_analysis/local_results/local_test_XY.rds")
 
 # save result
 #saveRDS(g_result, "global_result1-7.rds")
-
-message("finished ", Sys.time())
-q()

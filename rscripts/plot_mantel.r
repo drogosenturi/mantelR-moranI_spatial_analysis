@@ -2,7 +2,7 @@ setwd('~/soraida_r/mantel_analysis')
 library(vegan)
 library(ggplot2)
 library(gridExtra)
-results <- readRDS('nursery_files/test_result2.rds')
+results <- readRDS('nursery_files/test_result_1-8.rds')
 print(results[[7]])
 ## plot multiple into pdf
 plots <- function(i) {
@@ -11,8 +11,8 @@ plots <- function(i) {
         output
     )
 }
-pdf("plots/test_plots_2.pdf", onefile = TRUE)
-lapply(1:7, plots)
+pdf("plots/test_plots_1-8.pdf", onefile = TRUE)
+lapply(1:8, plots)
 dev.off()
 
 plot(results[[1]])

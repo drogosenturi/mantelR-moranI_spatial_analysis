@@ -1,7 +1,3 @@
-##              SO FAR THE BEST WITH MCLAPPLY               ##
-#### USE MANTEL 6
-message("start ", Sys.time())
-#setwd("~/mantel_lab/nursery_files/")
 setwd("~/soraida_r/mantel_analysis/nursery_files/")
 ## Create function to load all packages
 loadPackages <- function(packages) {
@@ -29,7 +25,7 @@ head(df_patches)
 load_df <- function(z) {
     fread(file_path[z])
 }
-df_list <- mclapply(1:2, load_df, mc.cores = 2)
+df_list <- mclapply(1:5, load_df, mc.cores = 5)
 
 # make list of new dfs with just species id and patchid
 # and coordinates
@@ -40,7 +36,7 @@ fix_df <- function(z) {
     colnames(df_temp)[3] <- "patch.ID"
     return(df_temp[c("P.xcor", "P.ycor", "patch.ID", "Species")])
 }
-dff <- mclapply(1:2, fix_df, mc.cores = 2) # put list into dff
+dff <- mclapply(1:5, fix_df, mc.cores = 5) # put list into dff
 
 # tidyverse it up and make species occurence table
 ## patch as row labels
@@ -55,7 +51,7 @@ to_SO <- function(i) {
                         values_fill = 0)
     )
 }
-dfSO <- mclapply(1:2, to_SO, mc.cores = 2)
+dfSO <- mclapply(1:5, to_SO, mc.cores = 6)
 
 # fill in missing coordinates for all df in dfSO
 fill_in_coords <- function(i) {
@@ -66,7 +62,7 @@ fill_in_coords <- function(i) {
         joined
     )
 }
-dffin <- mclapply(1:2, fill_in_coords, mc.cores = 2)
+dffin <- mclapply(1:5, fill_in_coords, mc.cores = 5)
 #length(as.data.frame(dffin[[7]])[,1]) # check length
 
 # make list of patch distance matrices
@@ -76,52 +72,4 @@ make_pdist <- function(i) {
         vegdist(cbind(df_temp$P.xcor, df_temp$P.ycor),"euclid")
     )
 }
-patch_dists <- mclapply(1:2, make_pdist, mc.cores = 2)
-
-# make list of species distance matrices
-make_sdist <- function(i) {
-    df_temp <- as.data.frame(dffin[i])
-    return(
-        vegdist(df_temp[-(1:3)]) # method bray
-    )
-}
-species_dists <- mclapply(1:2, make_sdist, mc.cores = 2)
-
-# remove NaN
-remove_NaN <- function(i) {
-    temp <- species_dists[[i]]
-    temp[is.nan(temp)] <- 0
-    return(
-        temp
-    )
-}
-species_dists <- mclapply(1:2, remove_NaN, mc.cores = 2)
-#is.nan(as.dist(species_dists[[1]])) #check
-
-# make standalone patch_dist
-patch_dists_1 <- as.dist(patch_dists[[1]])
-
-# clean up the garbage
-rm(list = c("df_list", "dff", "dffin", "file_path", "df_patches","dfSO","patch_dists"))
-gc()
-
-# make break points
-break_points <- seq(0, 30, by = 2)
-
-# local mantel correlogram with vegan
-mantel_vegan <- function(i) {
-    result <- mantel.correlog(species_dists[[i]],
-                              D.geo = patch_dists_1,
-                              break.pts = break_points,
-                              cutoff = FALSE, nperm=100)
-    return(
-        result
-    )
-}
-v_result <- mclapply(1:2, mantel_vegan, mc.cores = 2)
-
-## save as object for later use
-# should contain list of all mantel results for x amount of files
-saveRDS(v_result, "test1.rds")
-message("finished ", Sys.time())
-q()
+system.time(patch_dists <- mclapply(1:5, make_pdist, mc.cores = 6))
