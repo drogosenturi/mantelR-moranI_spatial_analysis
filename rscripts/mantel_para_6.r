@@ -104,7 +104,7 @@ break_points <- seq(0, 50, by = 2)
 # local mantel correlogram with vegan
 mantel_vegan <- function(i) {
     result <- mgram(species_dists[[i]], patch_dists[[i]],
-                    breaks = break_points, cutoff = FALSE, nperm=100)
+                    breaks = break_points, nperm=100)
     return(
         result
     )
