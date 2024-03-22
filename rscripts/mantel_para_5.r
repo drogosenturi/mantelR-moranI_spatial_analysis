@@ -25,7 +25,7 @@ head(df_patches)
 load_df <- function(z) {
     fread(file_path[z])
 }
-df_list <- mclapply(1:10, load_df, mc.cores = 10)
+df_list <- mclapply(1:8, load_df, mc.cores = 8)
 
 # make list of new dfs with just species id and patchid
 # and coordinates
@@ -36,7 +36,7 @@ fix_df <- function(z) {
     colnames(df_temp)[3] <- "patch.ID"
     return(df_temp[c("P.xcor", "P.ycor", "patch.ID", "Species")])
 }
-dff <- mclapply(1:10, fix_df, mc.cores = 10) # put list into dff
+dff <- mclapply(1:8, fix_df, mc.cores = 8) # put list into dff
 
 # tidyverse it up and make species occurence table
 ## patch as row labels
@@ -51,7 +51,7 @@ to_SO <- function(i) {
                         values_fill = 0)
     )
 }
-dfSO <- mclapply(1:10, to_SO, mc.cores = 10)
+dfSO <- mclapply(1:8, to_SO, mc.cores = 8)
 
 # fill in missing coordinates for all df in dfSO
 fill_in_coords <- function(i) {
@@ -62,7 +62,7 @@ fill_in_coords <- function(i) {
         joined
     )
 }
-dffin <- mclapply(1:10, fill_in_coords, mc.cores = 10)
+dffin <- mclapply(1:8, fill_in_coords, mc.cores = 8)
 #length(as.data.frame(dffin[[7]])[,1]) # check length
 
 # make list of patch distance matrices
@@ -72,7 +72,7 @@ make_pdist <- function(i) {
         vegdist(cbind(df_temp$P.xcor, df_temp$P.ycor),"euclid")
     )
 }
-patch_dists <- mclapply(1:10, make_pdist, mc.cores = 10)
+patch_dists <- mclapply(1:8, make_pdist, mc.cores = 8)
 
 # make list of species distance matrices
 make_sdist <- function(i) {
@@ -81,7 +81,7 @@ make_sdist <- function(i) {
         vegdist(df_temp[-(1:3)]) # method bray
     )
 }
-species_dists <- mclapply(1:10, make_sdist, mc.cores = 10)
+species_dists <- mclapply(1:8, make_sdist, mc.cores = 8)
 
 # remove NaN
 remove_NaN <- function(i) {
@@ -91,7 +91,7 @@ remove_NaN <- function(i) {
         temp
     )
 }
-species_dists <- mclapply(1:10, remove_NaN, mc.cores = 10)
+species_dists <- mclapply(1:8, remove_NaN, mc.cores = 8)
 #is.nan(as.dist(species_dists[[1]])) #check
 
 # make standalone patch_dist
@@ -114,10 +114,10 @@ mantel_vegan <- function(i) {
         result
     )
 }
-system.time(v_result <- mclapply(1:9, mantel_vegan, mc.cores = 9))
+system.time(v_result <- mclapply(1:8, mantel_vegan, mc.cores = 8))
 
 ## save as object for later use
 # should contain list of all mantel results for x amount of files
-saveRDS(v_result, "test_result_1-10.rds")
+saveRDS(v_result, "test_result_1-8.rds")
 message("finished ", Sys.time())
 q()
