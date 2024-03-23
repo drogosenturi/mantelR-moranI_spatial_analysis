@@ -1,7 +1,7 @@
 ##              BEST LOCAL MANTEL WITH XY COORDS             ##
 message("start ", Sys.time())
-setwd("~/mantel_lab/")
-#setwd("~/soraida_r/mantel_analysis/nursery_files/")
+#setwd("~/mantel_lab/")
+setwd("~/soraida_r/mantel_analysis/")
 ## Create function to load all packages
 loadPackages <- function(packages) {
     lapply(c("data.table", "parallel", "ecodist",
@@ -18,9 +18,9 @@ file_path <- dir(path = ".",
 # create a df containing all patch coordinates, make headers same
 # and remove richness and block columns
 df_patches <- fread("PatchRichnessEnd-1000.csv")
-colnames(df_patches)[1] <- "P.xcor"
-colnames(df_patches)[2] <- "P.ycor"
-df_patches <- df_patches[,-c(3:5)]
+colnames(df_patches)[2] <- "P.xcor"
+colnames(df_patches)[3] <- "P.ycor"
+df_patches <- df_patches[,-c(1,4:7)]
 head(df_patches)
 
 # list of DF with each item being full dataframe
@@ -65,7 +65,7 @@ fill_in_coords <- function(i) {
     )
 }
 dffin <- mclapply(1:3, fill_in_coords, mc.cores = 3)
-#length(as.data.frame(dffin[[7]])[,1]) # check length
+#length(as.data.frame(dffin[[3]])[,1]) # check length
 # change df_patches headers to X and Y
 colnames(df_patches)[1] <- "X"
 colnames(df_patches)[2] <- "Y"
