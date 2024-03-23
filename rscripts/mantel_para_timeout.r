@@ -96,7 +96,7 @@ rm(list = c("df_list", "dff", "dffin", "file_path","dfSO"))
 gc()
 
 # make break points
-break_points <- seq(0, 30, by = 2)
+break_points <- seq(0, 6, by = 2)
 
 # local mantel correlogram with vegan
 mantel_vegan <- function(i) {
