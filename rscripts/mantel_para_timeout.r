@@ -1,7 +1,7 @@
 ##              BEST LOCAL MANTEL WITH XY COORDS             ##
 message("start ", Sys.time())
-#setwd("~/mantel_lab/")
-setwd("~/soraida_r/mantel_analysis/")
+setwd("~/mantel_lab/")
+#setwd("~/soraida_r/mantel_analysis/")
 ## Create function to load all packages
 loadPackages <- function(packages) {
     lapply(c("data.table", "parallel", "ecodist",
