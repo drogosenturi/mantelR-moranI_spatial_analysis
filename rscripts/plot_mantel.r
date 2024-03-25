@@ -1,9 +1,19 @@
 setwd('~/soraida_r/mantel_analysis')
-library(vegan)
+library(vegan) ## you must load vegan to read the results properly!
 library(ggplot2)
-library(gridExtra)
-results <- readRDS('nursery_files/test_result_1-8.rds')
-print(results[[7]])
+library(gridExtra) ## to grid the plots
+
+# load in results to list 'results'
+results <- readRDS('nursery_files/test_result_1-8.rds') 
+print(results[[7]]) # check that it's correct
+
+# make it into a dataframe if you want to manipulate it
+df <- as.data.frame(results[[7]][1])
+print(df)
+
+# otherwise, you can just extract that first result with $mantel.res
+results[[1]]$mantel.res
+
 ## plot multiple into pdf
 plots <- function(i) {
     output <- plot(results[[i]])
