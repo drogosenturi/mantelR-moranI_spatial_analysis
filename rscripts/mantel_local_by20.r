@@ -42,6 +42,7 @@ mantel_vegan <- function(i) {
     return(
         result
     )
+    gc()
 }
 v_result <- mclapply(1:20, mantel_vegan, mc.cores = 20)
 
