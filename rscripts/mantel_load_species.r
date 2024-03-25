@@ -69,7 +69,7 @@ fill_in_coords <- function(i) {
 }
 dffin <- mclapply(1:40, fill_in_coords, mc.cores = 40)
 #length(as.data.frame(dffin[[7]])[,1]) # check length
-rm(df_SO)
+rm(dfSO)
 
 # change df_patches headers to X and Y
 colnames(df_patches)[1] <- "X"
