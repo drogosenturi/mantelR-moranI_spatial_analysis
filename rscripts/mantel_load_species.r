@@ -27,7 +27,8 @@ head(df_patches)
 load_df <- function(z) {
     fread(file_path[z])
 }
-df_list <- mclapply(1:2, load_df, mc.cores = 2)
+df_list <- mclapply(1:40, load_df, mc.cores = 40)
+rm(file_path)
 
 # make list of new dfs with just species id and patchid
 # and coordinates
@@ -38,7 +39,8 @@ fix_df <- function(z) {
     colnames(df_temp)[3] <- "patch.ID"
     return(df_temp[c("P.xcor", "P.ycor", "patch.ID", "Species")])
 }
-dff <- mclapply(1:2, fix_df, mc.cores = 2) # put list into dff
+dff <- mclapply(1:40, fix_df, mc.cores = 40) # put list into dff
+rm(df_list)
 
 # tidyverse it up and make species occurence table
 ## patch as row labels
@@ -53,7 +55,8 @@ to_SO <- function(i) {
                         values_fill = 0)
     )
 }
-dfSO <- mclapply(1:2, to_SO, mc.cores = 2)
+dfSO <- mclapply(1:40, to_SO, mc.cores = 40)
+rm(dff)
 
 # fill in missing coordinates for all df in dfSO
 fill_in_coords <- function(i) {
@@ -64,12 +67,17 @@ fill_in_coords <- function(i) {
         joined
     )
 }
-dffin <- mclapply(1:2, fill_in_coords, mc.cores = 2)
+dffin <- mclapply(1:40, fill_in_coords, mc.cores = 40)
 #length(as.data.frame(dffin[[7]])[,1]) # check length
+rm(dfSO)
+
 # change df_patches headers to X and Y
 colnames(df_patches)[1] <- "X"
 colnames(df_patches)[2] <- "Y"
 #head(df_patches) # quick check
+
+# clean up the garbage
+gc()
 
 # make list of species distance matrices
 make_sdist <- function(i) {
@@ -78,7 +86,7 @@ make_sdist <- function(i) {
         vegdist(df_temp[-(1:3)]) # method bray
     )
 }
-species_dists <- mclapply(1:2, make_sdist, mc.cores = 2)
+species_dists <- mclapply(1:40, make_sdist, mc.cores = 40)
 
 # remove NaN
 remove_NaN <- function(i) {
@@ -88,46 +96,11 @@ remove_NaN <- function(i) {
         temp
     )
 }
-species_dists <- mclapply(1:2, remove_NaN, mc.cores = 2)
+species_dists <- mclapply(1:40, remove_NaN, mc.cores = 40)
 #is.nan(as.dist(species_dists[[1]])) #check
 
-# clean up the garbage
-rm(list = c("df_list", "dff", "dffin", "file_path","dfSO"))
-gc()
-
-# make break points
-break_points <- seq(0, 30, by = 2)
-
-# local mantel correlogram with vegan
-mantel_vegan <- function(i) {
-    result <- mantel.correlog(species_dists[[i]],
-                              XY = df_patches,
-                              break.pts = break_points,
-                              cutoff = FALSE, nperm=1)
-    return(
-        result
-    )
-}
-v_result <- mclapply(1:2, mantel_vegan, mc.cores = 2)
-
-## save as object for later use
-# contains list of all mantel results for x amount of files
-saveRDS(v_result, "~/mantel_lab/local_results/timeout_test.rds")
-
-# global mantel analysis
-#mantel_global <- function(i) {
-#    result <- mantel(
-#        species_dists[[i]],
-#        patch_dists[[i]]
-#        )
-#    return(
-#        result
-#    )
-#}
-#system.time(g_result <- mclapply(1:7, mantel_global, mc.cores = 7))
-
-# save result
-#saveRDS(g_result, "global_result1-7.rds")
+# save files
+saveRDS(species_dists, "~/mantel_lab/sp_dist_mimicry_500.rds")
 
 message("finished ", Sys.time())
 q()
