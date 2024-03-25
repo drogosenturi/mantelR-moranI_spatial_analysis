@@ -38,7 +38,7 @@ mantel_vegan <- function(i) {
     result <- mantel.correlog(species_dists[[i]],
                               XY = df_patches,
                               break.pts = break_points,
-                              cutoff = FALSE, nperm=1)
+                              cutoff = FALSE, nperm=100)
     return(
         result
     )
