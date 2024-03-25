@@ -24,7 +24,7 @@ colnames(df_patches)[2] <- "Y"
 #head(df_patches) # quick check
 
 # load in species_dists
-species_dists <- readRDS("~/sp_dist_mimicry_500.rds")
+species_dists <- readRDS("~/mantel_lab/sp_dist_mimicry_500.rds")
 
 # change to only first 15
 species_dists <- species_dists[1:15]
