@@ -1,6 +1,6 @@
 ##              BEST LOCAL MANTEL WITH XY COORDS             ##
 message("start ", Sys.time())
-setwd("~/mantel_lab/nursery_files/")
+setwd("~/mantel_lab/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/")
 ## Create function to load all packages
 loadPackages <- function(packages) {
@@ -17,7 +17,7 @@ file_path <- dir(path = ".",
 
 # create a df containing all patch coordinates, make headers same
 # and remove richness and block columns
-df_patches <- fread("PatchRichnessEnd-101.csv")
+df_patches <- fread("nursery_files/PatchRichnessEnd-101.csv")
 colnames(df_patches)[1] <- "P.xcor"
 colnames(df_patches)[2] <- "P.ycor"
 df_patches <- df_patches[,-c(3:5)]
@@ -27,7 +27,7 @@ head(df_patches)
 load_df <- function(z) {
     fread(file_path[z])
 }
-df_list <- mclapply(1:40, load_df, mc.cores = 40)
+df_list <- mclapply(1:500, load_df, mc.cores = 40)
 rm(file_path)
 
 # make list of new dfs with just species id and patchid
@@ -39,7 +39,7 @@ fix_df <- function(z) {
     colnames(df_temp)[3] <- "patch.ID"
     return(df_temp[c("P.xcor", "P.ycor", "patch.ID", "Species")])
 }
-dff <- mclapply(1:40, fix_df, mc.cores = 40) # put list into dff
+dff <- mclapply(1:500, fix_df, mc.cores = 40) # put list into dff
 rm(df_list)
 
 # tidyverse it up and make species occurence table
@@ -55,7 +55,7 @@ to_SO <- function(i) {
                         values_fill = 0)
     )
 }
-dfSO <- mclapply(1:40, to_SO, mc.cores = 40)
+dfSO <- mclapply(1:500, to_SO, mc.cores = 40)
 rm(dff)
 
 # fill in missing coordinates for all df in dfSO
@@ -67,7 +67,7 @@ fill_in_coords <- function(i) {
         joined
     )
 }
-dffin <- mclapply(1:40, fill_in_coords, mc.cores = 40)
+dffin <- mclapply(1:500, fill_in_coords, mc.cores = 40)
 #length(as.data.frame(dffin[[7]])[,1]) # check length
 rm(dfSO)
 
@@ -86,7 +86,7 @@ make_sdist <- function(i) {
         vegdist(df_temp[-(1:3)]) # method bray
     )
 }
-species_dists <- mclapply(1:40, make_sdist, mc.cores = 40)
+species_dists <- mclapply(1:500, make_sdist, mc.cores = 40)
 
 # remove NaN
 remove_NaN <- function(i) {
@@ -96,11 +96,11 @@ remove_NaN <- function(i) {
         temp
     )
 }
-species_dists <- mclapply(1:40, remove_NaN, mc.cores = 40)
+species_dists <- mclapply(1:500, remove_NaN, mc.cores = 40)
 #is.nan(as.dist(species_dists[[1]])) #check
 
 # save files
-saveRDS(species_dists, "~/mantel_lab/sp_dist_mimicry_500.rds")
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_500.rds")
 
 message("finished ", Sys.time())
 q()
