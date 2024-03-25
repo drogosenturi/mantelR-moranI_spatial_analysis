@@ -71,32 +71,30 @@ dffin <- mclapply(1:500, fill_in_coords, mc.cores = 40)
 #length(as.data.frame(dffin[[7]])[,1]) # check length
 rm(dfSO)
 
-# change df_patches headers to X and Y
-colnames(df_patches)[1] <- "X"
-colnames(df_patches)[2] <- "Y"
-#head(df_patches) # quick check
-
 # clean up the garbage
 gc()
 
 # make list of species distance matrices
 make_sdist <- function(i) {
     df_temp <- as.data.frame(dffin[i])
-    return(
-        vegdist(df_temp[-(1:3)]) # method bray
-    )
-}
-species_dists <- mclapply(1:500, make_sdist, mc.cores = 40)
-
-# remove NaN
-remove_NaN <- function(i) {
-    temp <- species_dists[[i]]
+    temp <- vegdist(df_temp[-(1:3)]) # method bray
     temp[is.nan(temp)] <- 0
     return(
         temp
     )
+    gc()
 }
-species_dists <- mclapply(1:500, remove_NaN, mc.cores = 40)
+species_dists <- mclapply(1:500, make_sdist, mc.cores = 40)
+
+# remove NaN
+#remove_NaN <- function(i) {
+#    temp <- species_dists[[i]]
+#    temp[is.nan(temp)] <- 0
+#    return(
+#        temp
+#    )
+#}
+#species_dists <- mclapply(1:500, remove_NaN, mc.cores = 40)
 #is.nan(as.dist(species_dists[[1]])) #check
 
 # save files
