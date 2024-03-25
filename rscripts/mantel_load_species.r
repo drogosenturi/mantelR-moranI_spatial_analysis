@@ -84,7 +84,86 @@ make_sdist <- function(i) {
     )
     gc()
 }
-species_dists <- mclapply(1:500, make_sdist, mc.cores = 40)
+
+# make species_dists and load in batches of 40
+message("batch 1")
+species_dists <- mclapply(1:40, make_sdist, mc.cores = 40)
+is.nan(species_dists[[1]])
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_1-40.rds")
+rm(species_dists)
+gc()
+
+message("batch 2")
+species_dists <- mclapply(41:80, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_41-80.rds")
+rm(species_dists)
+gc()
+
+message("batch 3")
+species_dists <- mclapply(81:120, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_81-120.rds")
+rm(species_dists)
+gc()
+
+message("batch 4")
+species_dists <- mclapply(121:160, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_121-160.rds")
+rm(species_dists)
+gc()
+
+message("batch 5")
+species_dists <- mclapply(161:200, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_161-200.rds")
+rm(species_dists)
+gc()
+
+message("batch 6")
+species_dists <- mclapply(201:240, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_201-240.rds")
+rm(species_dists)
+gc()
+
+message("batch 7")
+species_dists <- mclapply(241:280, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_241-280.rds")
+rm(species_dists)
+gc()
+
+message("batch 8")
+species_dists <- mclapply(281:320, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_281-320.rds")
+rm(species_dists)
+gc()
+
+message("batch 9")
+species_dists <- mclapply(321:360, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_321-360.rds")
+rm(species_dists)
+gc()
+
+message("batch 10")
+species_dists <- mclapply(361:400, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_361-400.rds")
+rm(species_dists)
+gc()
+
+message("batch 11")
+species_dists <- mclapply(401:440, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_401-440.rds")
+rm(species_dists)
+gc()
+
+message("batch 12")
+species_dists <- mclapply(441:480, make_sdist, mc.cores = 40)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_441-480.rds")
+rm(species_dists)
+gc()
+
+message("batch 13")
+species_dists <- mclapply(481:500, make_sdist, mc.cores = 20)
+saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_481-500.rds")
+rm(species_dists)
+gc()
 
 # remove NaN
 #remove_NaN <- function(i) {
@@ -96,9 +175,6 @@ species_dists <- mclapply(1:500, make_sdist, mc.cores = 40)
 #}
 #species_dists <- mclapply(1:500, remove_NaN, mc.cores = 40)
 #is.nan(as.dist(species_dists[[1]])) #check
-
-# save files
-saveRDS(species_dists, "~/mantel_files/sp_dist_mimicry_500.rds")
 
 message("finished ", Sys.time())
 q()
