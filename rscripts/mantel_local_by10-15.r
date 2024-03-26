@@ -53,23 +53,23 @@ message("start 1 ", Sys.time())
 #message("finished 1 ", Sys.time())
 
 ## RUN 2
-message("start 2 ", Sys.time())
-rm(list = c("v_result", "species_dists"))
-gc()
+#message("start 2 ", Sys.time())
+#rm(list = c("v_result", "species_dists"))
+#gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_1-40.rds")
+#species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_1-40.rds")
 
 # load in next 15
-species_dists <- species_dists[16:30]
-gc()
+#species_dists <- species_dists[16:30]
+#gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+#v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
-saveRDS(v_result, "~/mantel_files/local_results/local_16-30.rds")
-message("finished 2 ", Sys.time())
+#saveRDS(v_result, "~/mantel_files/local_results/local_16-30.rds")
+#message("finished 2 ", Sys.time())
 
 ## RUN 3
 message("start 3 ", Sys.time())
@@ -88,6 +88,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_31-40.rds")
+Sys.sleep(30)
 message("finished 3 ", Sys.time())
 
 ## RUN 4
@@ -107,6 +108,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_41-55.rds")
+Sys.sleep(30)
 message("finished 3 ", Sys.time())
 
 ## RUN 5
@@ -126,6 +128,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_56-70.rds")
+Sys.sleep(30)
 message("finished 4 ", Sys.time())
 
 ## RUN 6
@@ -145,6 +148,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_71-80.rds")
+Sys.sleep(30)
 message("finished 6 ", Sys.time())
 
 ## RUN 7
@@ -164,6 +168,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_81-95.rds")
+Sys.sleep(30)
 message("finished 5 ", Sys.time())
 
 ## RUN 8
@@ -183,6 +188,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_96-110.rds")
+Sys.sleep(30)
 message("finished 6 ", Sys.time())
 
 ## RUN 9
@@ -202,6 +208,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_111-120.rds")
+Sys.sleep(30)
 message("finished 9 ", Sys.time())
 
 ## RUN 10
@@ -221,6 +228,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_121-135.rds")
+Sys.sleep(30)
 message("finished 10 ", Sys.time())
 
 ## RUN 11
@@ -240,6 +248,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_136-150.rds")
+Sys.sleep(30)
 message("finished 11 ", Sys.time())
 
 ## RUN 12
@@ -259,6 +268,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_151-160.rds")
+Sys.sleep(30)
 message("finished 12 ", Sys.time())
 
 ## RUN 13
@@ -278,6 +288,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_161-175.rds")
+Sys.sleep(30)
 message("finished 13 ", Sys.time())
 
 ## RUN 14
@@ -297,6 +308,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_176-190.rds")
+Sys.sleep(30)
 message("finished 14 ", Sys.time())
 
 ## RUN 15
@@ -316,6 +328,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_191-200.rds")
+Sys.sleep(30)
 message("finished 15 ", Sys.time())
 
 ## RUN 16
@@ -335,6 +348,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_201-215.rds")
+Sys.sleep(30)
 message("finished 16 ", Sys.time())
 
 ## RUN 17
@@ -354,6 +368,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_216-230.rds")
+Sys.sleep(30)
 message("finished 17 ", Sys.time())
 
 ## RUN 18
@@ -373,6 +388,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_231-240.rds")
+Sys.sleep(30)
 message("finished 18 ", Sys.time())
 
 ## RUN 19
@@ -392,6 +408,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_241-255.rds")
+Sys.sleep(30)
 message("finished 19 ", Sys.time())
 
 ## RUN 20
@@ -411,6 +428,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_256-270.rds")
+Sys.sleep(30)
 message("finished 20 ", Sys.time())
 
 ## RUN 21
@@ -430,6 +448,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_271-280.rds")
+Sys.sleep(30)
 message("finished 21 ", Sys.time())
 
 ## RUN 22
@@ -449,6 +468,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_281-295.rds")
+Sys.sleep(30)
 message("finished 22 ", Sys.time())
 
 ## RUN 23
@@ -468,6 +488,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_296-310.rds")
+Sys.sleep(30)
 message("finished 23 ", Sys.time())
 
 ## RUN 24
@@ -487,6 +508,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_311-320.rds")
+Sys.sleep(30)
 message("finished 24 ", Sys.time())
 
 ## RUN 25
@@ -506,6 +528,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_321-335.rds")
+Sys.sleep(30)
 message("finished 25 ", Sys.time())
 
 ## RUN 26
@@ -525,6 +548,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_336-350.rds")
+Sys.sleep(30)
 message("finished 26 ", Sys.time())
 
 ## RUN 27
@@ -544,6 +568,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_351-360.rds")
+Sys.sleep(30)
 message("finished 27 ", Sys.time())
 
 ## RUN 28
@@ -563,6 +588,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_361-375.rds")
+Sys.sleep(30)
 message("finished 28 ", Sys.time())
 
 ## RUN 29
@@ -582,6 +608,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_376-390.rds")
+Sys.sleep(30)
 message("finished 20 ", Sys.time())
 
 ## RUN 30
@@ -601,6 +628,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_391-400.rds")
+Sys.sleep(30)
 message("finished 30 ", Sys.time())
 
 ## RUN 31
@@ -620,6 +648,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_401-415.rds")
+Sys.sleep(30)
 message("finished 31 ", Sys.time())
 
 ## RUN 32
@@ -639,6 +668,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_416-430.rds")
+Sys.sleep(30)
 message("finished 32 ", Sys.time())
 
 ## RUN 33
@@ -658,6 +688,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_431-440.rds")
+Sys.sleep(30)
 message("finished 33 ", Sys.time())
 
 ## RUN 34
@@ -677,6 +708,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_441-455.rds")
+Sys.sleep(30)
 message("finished 34 ", Sys.time())
 
 ## RUN 35
@@ -696,6 +728,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_456-470.rds")
+Sys.sleep(30)
 message("finished 35 ", Sys.time())
 
 ## RUN 36
@@ -715,6 +748,7 @@ v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_471-480.rds")
+Sys.sleep(30)
 message("finished 36 ", Sys.time())
 
 ## RUN 37
@@ -734,6 +768,7 @@ v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_481-495.rds")
+Sys.sleep(30)
 message("finished 37 ", Sys.time())
 
 ## RUN 38
@@ -753,5 +788,6 @@ v_result <- mclapply(1:5, mantel_vegan, mc.cores = 5)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/local_results/local_496-500.rds")
+Sys.sleep(30)
 message("finished 38 ", Sys.time())
 q()
