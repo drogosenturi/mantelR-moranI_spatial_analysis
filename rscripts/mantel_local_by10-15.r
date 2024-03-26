@@ -1,5 +1,5 @@
 ##              BEST LOCAL MANTEL WITH XY COORDS             ##
-setwd("~/mantel_files/")
+setwd("~/mantel_lab/nursery_files/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/")
 ## Create function to load all packages
 loadPackages <- function(packages) {
@@ -11,7 +11,7 @@ loadPackages()
 
 # create a df containing all patch coordinates, make headers same
 # and remove richness and block columns
-df_patches <- fread("~/mantel_lab/nursery_files/PatchRichnessEnd-101.csv")
+df_patches <- fread("PatchRichnessEnd-101.csv")
 colnames(df_patches)[1] <- "P.xcor"
 colnames(df_patches)[2] <- "P.ycor"
 df_patches <- df_patches[,-c(3:5)]
@@ -40,17 +40,17 @@ mantel_vegan <- function(i) {
 message("start 1 ", Sys.time())
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_1-40.rds")
+#species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_1-40.rds")
 
 # change to only first 15
-species_dists <- species_dists[1:15]
-gc()
+#species_dists <- species_dists[1:15]
+#gc()
 
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+#v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
 
 # save as rds
-saveRDS(v_result, "~/mantel_files/local_results/local_1-15.rds")
-message("finished 1 ", Sys.time())
+#saveRDS(v_result, "~/mantel_files/local_results/local_1-15.rds")
+#message("finished 1 ", Sys.time())
 
 ## RUN 2
 message("start 2 ", Sys.time())
