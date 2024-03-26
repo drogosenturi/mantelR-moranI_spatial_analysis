@@ -1,5 +1,5 @@
 ##              BEST LOCAL MANTEL WITH XY COORDS             ##
-setwd("~/mantel_lab/nursery_files/")
+setwd("~/mantel_files/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/")
 ## Create function to load all packages
 loadPackages <- function(packages) {
@@ -11,7 +11,7 @@ loadPackages()
 
 # create a df containing all patch coordinates, make headers same
 # and remove richness and block columns
-df_patches <- fread("PatchRichnessEnd-101.csv")
+df_patches <- fread("~/mantel_lab/nursery_files/PatchRichnessEnd-101.csv")
 colnames(df_patches)[1] <- "P.xcor"
 colnames(df_patches)[2] <- "P.ycor"
 df_patches <- df_patches[,-c(3:5)]
