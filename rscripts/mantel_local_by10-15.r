@@ -37,7 +37,7 @@ mantel_vegan <- function(i) {
     gc()
 }
 ## RUN 1
-message("start 1 ", Sys.time())
+#message("start 1 ", Sys.time())
 
 # load in species_dists
 #species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_1-40.rds")
