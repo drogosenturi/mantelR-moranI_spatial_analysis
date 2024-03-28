@@ -1,6 +1,6 @@
 ## script for global mantel analysis
-#setwd("~/mantel_lab/nursery_files/")
-setwd("~/soraida_r/mantel_analysis/nursery_files/")
+setwd("~/mantel_lab/")
+#setwd("~/soraida_r/mantel_analysis/nursery_files/")
 
 # load in packages
 loadPackages <- function(packages) {
@@ -17,7 +17,7 @@ mantel_global <- function(i) {
 }
 
 # load in patch dists
-patch_dists <- readRDS("~/mantel_lab/patch_dists.rds")
+patch_dists <- readRDS("~/mantel_files/patch_dists.rds")
 
 ## RUN 1
 message("start 1 ", Sys.time())
