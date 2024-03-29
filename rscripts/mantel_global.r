@@ -52,20 +52,20 @@ patch_dists <- readRDS("~/mantel_files/patch_dists.rds")
 #message("finished 2 ", Sys.time())
 
 ## RUN 3
-message("start 3 ", Sys.time())
-rm(list = c('species_dists', 'result'))
-gc()
+#message("start 3 ", Sys.time())
+#rm(list = c('species_dists', 'result'))
+#gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_81-120.rds")
+#species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_81-120.rds")
 
 # apply function
-result <- mclapply(1:40, mantel_global, mc.cores = 15, mc.preschedule = FALSE)
+#result <- mclapply(1:40, mantel_global, mc.cores = 15, mc.preschedule = FALSE)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_81-120.rds")
-Sys.sleep(60)
-message("finished 3 ", Sys.time())
+#saveRDS(result, "~/mantel_files/global_results/global_81-120.rds")
+#Sys.sleep(60)
+#message("finished 3 ", Sys.time())
 
 ## RUN 4
 message("start 4 ", Sys.time())
