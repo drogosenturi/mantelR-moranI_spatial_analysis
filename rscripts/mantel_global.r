@@ -11,8 +11,9 @@ loadPackages()
 
 # define function for global analysis
 mantel_global <- function(i) {
+    result <- mantel(species_dists[[i]], patch_dists)
     return(
-        mantel(species_dists[[i]], patch_dists)
+        result
     )
     gc()
 }
