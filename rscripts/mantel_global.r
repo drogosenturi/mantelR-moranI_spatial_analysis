@@ -110,8 +110,7 @@ species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_201-240.rds")
 Sys.sleep(10)
 
 # apply function
-result <- mclapply(1:30, mantel_global, mc.cores = 15)
-append(result, mclapply(31:40, mantel_global, mc.cores = 10))
+result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
 saveRDS(result, "~/mantel_files/global_results/global_201-240.rds")

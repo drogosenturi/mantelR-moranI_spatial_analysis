@@ -16,6 +16,8 @@ print(df)
 # otherwise, you can just extract that first result with $mantel.res
 results[[1]]$mantel.res
 
+##                 LOCAL                ##
+
 # read in all files into one object
 files <- paste0('~/soraida_r/local_results/',
                     list.files('~/soraida_r/local_results/',
@@ -45,6 +47,23 @@ mantel_vals <- function(i) {
 }
 result_only <- lapply(1:length(new), mantel_vals)
 saveRDS(result_only, "mantel_results_only.rds")
+
+##              GLOBAL              ##
+
+# read in
+files <- paste0('~/mantel_files/global_results/',
+                    list.files('~/mantel_files/global_results/',
+                    recursive = TRUE))
+files <- mixedsort(files)
+read_in <- function(i) {
+    return(
+        readRDS(files[i])
+    )
+}
+extracted <- lapply(1:length(files), read_in)
+
+
+
 
 ## plot multiple into pdf
 plots <- function(i) {
