@@ -51,8 +51,8 @@ saveRDS(result_only, "mantel_results_only.rds")
 ##              GLOBAL              ##
 
 # read in
-files <- paste0('~/mantel_files/global_results/',
-                    list.files('~/mantel_files/global_results/',
+files <- paste0('~/soraida_r/global_results/',
+                    list.files('~/soraida_r/global_results/',
                     recursive = TRUE))
 files <- mixedsort(files)
 read_in <- function(i) {
@@ -62,8 +62,23 @@ read_in <- function(i) {
 }
 extracted <- lapply(1:length(files), read_in)
 
+# while loop to extract all 500 results
+i <- 1
+while(i < 14) {
+    new <- append(new, extracted[[i]][1:length(extracted[[i]])])
+    i <- i + 1
+}
+new <- new[-1] #remove first object creation line
+saveRDS(new, "~/soraida_r/global_results/global_500.rds")
 
-
+# extract only the mantel results
+global_vals <- function(i) {
+    return (
+        new[[i]][c(3,4)]
+    )
+}
+result_only <- lapply(1:length(new), global_vals)
+saveRDS(result_only, "global_statistics_only.rds")
 
 ## plot multiple into pdf
 plots <- function(i) {
