@@ -1,8 +1,10 @@
 ##              LOCAL MORANS                ##
 library(pgirmess)
 library(future)
-#setwd('~/mantel_files/mimicry_runs/')
-setwd('~/soraida_r/mantel_analysis/nursery_files/')
+library(dplyr)
+library(foreach)
+setwd('~/mantel_files/mimicry_runs/')
+#setwd('~/soraida_r/mantel_analysis/nursery_files/')
 
 # read in coordinates
 coordsdata <- read.csv("PatchRichnessEnd-101.csv", header = TRUE)
@@ -21,7 +23,7 @@ plan("multisession", workers = 10)
 Localmoran_result <- foreach(i = 1:10) %do% {
     gc()
     localfiles <- read.csv(file_path[i])
-    LocalRichnessdata <- localfiles[[i]]$patch.richness
+    LocalRichnessdata <- localfiles[[i]][5]
     pgirmess::correlog(coords = coordxy, z = LocalRichnessdata,
                        method = "Moran", nbclass = 15)
 }
