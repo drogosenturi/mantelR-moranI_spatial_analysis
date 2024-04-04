@@ -1,0 +1,88 @@
+## Moran's I test working code
+
+```{r}
+#you may not need all of these but this is what I had when I began this code so I don't want to miss one. 
+library(spdep) # for spatial dependency analysis
+library(sf)
+library(sp)
+library(tidyverse)
+library(dplyr)
+library(ape)
+library(pgirmess)
+library(future)
+library(tictoc)
+```
+
+#### Making the inverted Matrix
+
+```{r}
+#making a matrix from the PatchRichnessEnd file. You can pick any PatchRichnessEnd file. 
+#this coordinate matrix file can be used for looping all the files for the global moran. 
+
+coordsdata <- read.csv("PatchRichnessEnd-101.csv", header = TRUE)
+head(coordsdata)
+
+# Take columns you need first (x and y) for all rows
+Coordsdf = coordsdata[, 1:2] 
+head(Coordsdf)
+
+# make distance matrix dataframe
+CoordsMatrix.dist<-as.matrix(dist(Coordsdf))
+#head(CoordsDF.dist)
+dput(head(CoordsMatrix.dist, 10))
+class(CoordsMatrix.dist)
+
+# inverting the matrix
+Coords.dist.inv<- 1/CoordsMatrix.dist
+diag(Coords.dist.inv) <- 0
+Coords.dist.inv[is.infinite(Coords.dist.inv)] <- 0 #In case there is still INF values 
+#Coords.dist.inv[1:5, 1:5] #just to check if matrix looks fine 
+```
+
+#### Retrieving path
+
+```{r}
+#using the richness column from one PatchRichnessEnd file for test
+#Notice that we are not using the speciesoccurrenceend files since we are using the number of species for each patch from the patchrichness files. aka frequency. 
+file_path <- dir(path = ".",pattern = paste0("^", "PatchRichnessEnd", ".*\\.csv$")) 
+
+
+```
+
+#### Global Moran I
+
+```{r}
+library(ape)
+#this is for global
+# Morans test is through ape package. I can probably do both global and local with the prigmess package at the same time the correlogram runs. I just haven't tried. Keep in mind these are not permutated. I would have to use the spdep package for that and turn the dataframe into a weighted one. However, I did it this way because I think by just taking the patch.richness column is easier to iterate therefore, faster. 
+
+globalmoran_result<-foreach (i=1:length(file_path)) %do% {
+  
+ dta<-read.csv(file_path[i])
+  Richnessdata<-dta[[i]]
+  Moran.I(Richnessdata$patch.richness, Coords.dist.inv)  # Emily said it was better to use the inverted matrix
+} 
+
+```
+
+#### Local Moran I
+
+```{r}
+# Here I am using the pgirmess package to create the Local Moran correlogram
+plan("multisession", workers = 7) #do this first so code runs faster.
+#7 is the number of processors I am using on my mac. But obviously we will use the lab computer.  I did not see an option here for permutations. You just need the coords = Coordsdf file here with the two columns of x and y.  
+#this one took a little long but obviously I was on my mac. 
+
+
+tic()
+Localmoran_result<-foreach (i=1:length(file_path)) %do% {
+ localfiles<-read.csv(file_path[i])
+ LocalRichnessdata<-localfiles[[i]]
+ pgirmess::correlog(coords=Coordsdf, z=LocalRichnessdata$patch.richness, method="Moran", nbclass=15) 
+toc()
+}
+
+
+
+plan("sequential") #do this after to go back to normal
+```
