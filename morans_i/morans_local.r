@@ -1,12 +1,13 @@
 ##              LOCAL MORANS                ##
 library(pgirmess)
-library(dplyr)
 library(parallel)
 setwd('~/mantel_files/mimicry_runs/')
 #setwd('~/soraida_r/mantel_analysis/nursery_files/')
 
 # read in coordinates
 coordsdata <- read.csv("PatchRichnessEnd-101.csv", header = TRUE)
+# order the data by patchID
+coordsdata <- coordsdata[order(coordsdata$patch.ID),]
 
 # extract only xy
 coordxy <- coordsdata[,1:2]
@@ -16,18 +17,21 @@ rm(coordsdata) #remove old
 file_path <- dir(path = ".",pattern = paste0("^", "PatchRichnessEnd",
                                              ".*\\.csv$"))
 length(file_path)
+
 # local moran test
 local_moran <- function(i) {
     localfiles <- read.csv(file_path[i])
+    localfiles <- localfiles[order(localfiles$patch.ID),]
     LocalRichnessdata <- as.vector(localfiles[[5]])
-    result <- pgirmess::correlog(coords = coordxy, z = LocalRichnessdata,nbclass=15)
+    result <- pgirmess::correlog(coords = coordxy, z = LocalRichnessdata,
+                                 nbclass=15)
     return(
         result
     )
     gc()
 }
 message("local test start: ", Sys.time())
-result <- mclapply(1:20, local_moran, mc.cores = 20)
+result <- mclapply(seq_along(file_path), local_moran, mc.cores = 45)
 message("local test finish: ", Sys.time())
 
 # save as RDS
