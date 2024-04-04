@@ -15,13 +15,12 @@ rm(coordsdata) #remove old
 # file path for patch richness files
 file_path <- dir(path = ".",pattern = paste0("^", "PatchRichnessEnd",
                                              ".*\\.csv$"))
-
+length(file_path)
 # local moran test
 local_moran <- function(i) {
     localfiles <- read.csv(file_path[i])
-    LocalRichnessdata <- localfiles[[i]][5]
-    result <- pgirmess::correlog(coords = coordxy, z = LocalRichnessdata,
-                       method = "Moran", nbclass = 15)
+    LocalRichnessdata <- as.vector(localfiles[[5]])
+    result <- pgirmess::correlog(coords = coordxy, z = LocalRichnessdata,nbclass=15)
     return(
         result
     )
