@@ -1,6 +1,5 @@
 ##              LOCAL MORANS                ##
 library(pgirmess)
-library(future)
 library(dplyr)
 library(foreach)
 setwd('~/mantel_files/mimicry_runs/')
@@ -18,16 +17,18 @@ file_path <- dir(path = ".",pattern = paste0("^", "PatchRichnessEnd",
                                              ".*\\.csv$"))
 
 # local moran test
-message("local test start: ", Sys.time())
-plan("multisession", workers = 10)
-Localmoran_result <- foreach(i = 1:10) %do% {
-    gc()
+local_moran <- function(i) {
     localfiles <- read.csv(file_path[i])
     LocalRichnessdata <- localfiles[[i]][5]
-    pgirmess::correlog(coords = coordxy, z = LocalRichnessdata,
+    result <- pgirmess::correlog(coords = coordxy, z = LocalRichnessdata,
                        method = "Moran", nbclass = 15)
+    return(
+        result
+    )
+    gc()
 }
-plan("sequential")
+message("local test start: ", Sys.time())
+result <- mclapply(1:20, local_moran, mc.cores = 20)
 message("local test finish: ", Sys.time())
 
 # save as RDS
