@@ -1,7 +1,7 @@
 ##              LOCAL MORANS                ##
 library(pgirmess)
 library(dplyr)
-library(foreach)
+library(parallel)
 setwd('~/mantel_files/mimicry_runs/')
 #setwd('~/soraida_r/mantel_analysis/nursery_files/')
 
@@ -32,5 +32,5 @@ result <- mclapply(1:20, local_moran, mc.cores = 20)
 message("local test finish: ", Sys.time())
 
 # save as RDS
-saveRDS(Localmoran_result, "~/moran_files/local_results/mimicry_result.rds")
+saveRDS(result, "~/moran_files/local_results/mimicry_result_test.rds")
 message("file saved", Sys.time())
