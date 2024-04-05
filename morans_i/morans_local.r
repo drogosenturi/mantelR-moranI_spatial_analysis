@@ -28,12 +28,13 @@ local_moran <- function(i) {
     return(
         result
     )
-    gc()
 }
 message("local test start: ", Sys.time())
-result <- mclapply(seq_along(file_path), local_moran, mc.cores = 45)
+#result <- mclapply(seq_along(file_path), local_moran, mc.cores = 45)
+result <- mclapply(c(483,485,486,487,488,489), local_moran, mc.core = 10)
 message("local test finish: ", Sys.time())
 
 # save as RDS
-saveRDS(result, "~/moran_files/local_results/mimicry_result_test.rds")
+#saveRDS(result, "~/moran_files/local_results/mimicry_result_test.rds")
+saveRDS(result, "~/moran_files/local_results/problem_files.rds")
 message("file saved", Sys.time())
