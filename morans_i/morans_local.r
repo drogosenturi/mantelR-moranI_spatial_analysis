@@ -30,7 +30,7 @@ local_moran <- function(i) {
     )
 }
 message("local test start: ", Sys.time())
-result <- mclapply(1:500, local_moran, mc.cores = 45)
+result <- mclapply(400:500, local_moran, mc.cores = 40)
 message("local test finish: ", Sys.time())
 
 # save as RDS
