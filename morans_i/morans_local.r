@@ -24,8 +24,8 @@ head(file_path)
 local_moran <- function(i) {
     localfiles <- read.csv(file_path[i])
     localfiles <- localfiles[order(localfiles$patch.ID),]
-    LocalRichnessdata <- as.vector(localfiles[[5]])
-    result <- pgirmess::correlog(coords = coordxy, z = LocalRichnessdata,
+    localfiles <- as.vector(localfiles[[5]])
+    result <- pgirmess::correlog(coords = coordxy, z = localfiles,
                                  nbclass = 15)
     return(
         result
