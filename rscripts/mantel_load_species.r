@@ -1,7 +1,7 @@
 ##              BEST LOCAL MANTEL WITH XY COORDS             ##
 message("start ", Sys.time())
-#setwd("~/mantel_files/mimicry_runs/")
-setwd("~/soraida_r/mantel_analysis/nursery_files/") #home desktop
+setwd("~/mantel_files/mimicry_runs/")
+#setwd("~/soraida_r/mantel_analysis/nursery_files/") #home desktop
 ## Create function to load all packages
 loadPackages <- function(packages) {
     lapply(c("data.table", "parallel", "ecodist",
@@ -20,8 +20,8 @@ file_path <- mixedsort(file_path, decreasing=TRUE)
 
 # create a df containing all patch coordinates, make headers same
 # and remove richness and block columns
-#df_patches <- fread("~/mantel_lab/nursery_files/PatchRichnessEnd-101.csv")
-df_patches <- fread("PatchRichnessEnd-101.csv") #for home desktop
+df_patches <- fread("~/mantel_lab/nursery_files/PatchRichnessEnd-101.csv")
+#df_patches <- fread("PatchRichnessEnd-101.csv") #for home desktop
 colnames(df_patches)[1] <- "P.xcor"
 colnames(df_patches)[2] <- "P.ycor"
 colnames(df_patches)[3] <- "patch.ID"
