@@ -3,13 +3,13 @@ library(parallel)
 library(ape)
 library(gtools)
 setwd('~/mantel_files/mimicry_runs/')
-setwd('~/soraida_r/mantel_analysis/nursery_files/')
+#setwd('~/soraida_r/mantel_analysis/nursery_files/')
 
 # read in coordinates
 coordsdata <- read.csv("PatchRichnessEnd-101.csv", header = TRUE)
 
 # order the data by patchID
-coordsdata <- coordsdata[order(coordsdata$patch.ID),]
+coordsdata <- coordsdata[order(coordsdata[["patch.ID"]]),]
 
 # extract only xy
 coordxy <- coordsdata[,1:2]
@@ -33,8 +33,8 @@ gc()
 
 global_moran <- function(i) {
     localfiles <- read.csv(file_path[i])
-    localfiles <- localfiles[order(localfiles$patch.ID),]
-    localfiles <- as.vector(localfiles[[5]])
+    localfiles <- localfiles[order(localfiles[["patch.ID"]]),]
+    localfiles <- as.vector(localfiles[["patch.richness"]])
     result <- Moran.I(localfiles, coordmatrix.inv)
     return(
         result
@@ -42,7 +42,7 @@ global_moran <- function(i) {
 }
 ## RUN 1
 message("global test start 1: ", Sys.time())
-result <- mclapply(1:120, global_moran, mc.preschedule=FALSE, mc.cores = 40)
+result <- mclapply(1:120, global_moran, mc.cores = 40)
 message("local test finish 1: ", Sys.time())
 
 # save as RDS
@@ -52,7 +52,7 @@ gc()
 
 ## RUN 2
 message("global test start 2: ", Sys.time())
-result <- mclapply(121:240, global_moran, mc.preschedule=FALSE, mc.cores = 40)
+result <- mclapply(121:240, global_moran, mc.cores = 40)
 message("local test finish 2: ", Sys.time())
 
 # save as RDS
@@ -62,7 +62,7 @@ gc()
 
 ## RUN 3
 message("global test start 3: ", Sys.time())
-result <- mclapply(241:360, global_moran, mc.preschedule=FALSE, mc.cores = 40)
+result <- mclapply(241:360, global_moran, mc.cores = 40)
 message("local test finish 3: ", Sys.time())
 
 # save as RDS
@@ -72,7 +72,7 @@ gc()
 
 ## RUN 4
 message("global test start 4: ", Sys.time())
-result <- mclapply(361:480, global_moran, mc.preschedule=FALSE, mc.cores = 40)
+result <- mclapply(361:480, global_moran, mc.cores = 40)
 message("local test finish 4: ", Sys.time())
 
 # save as RDS
@@ -82,7 +82,7 @@ gc()
 
 ## RUN 5
 message("global test start 5: ", Sys.time())
-result <- mclapply(481:500, global_moran, mc.preschedule=FALSE, mc.cores = 20)
+result <- mclapply(481:500, global_moran, mc.cores = 20)
 message("local test finish 5: ", Sys.time())
 
 # save as RDS

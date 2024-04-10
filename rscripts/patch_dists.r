@@ -16,6 +16,11 @@ colnames(df_patches)[3] <- "patch.ID"
 df_patches <- df_patches[,-c(4:5)]
 head(df_patches)
 
+# sort the patch list
+df_patches <- df_patches[order(df_patches[["patch.ID"]]),]
+df_patches <- df_patches[,-3]
+head(df_patches)
+
 patch_dists <- vegdist(cbind(df_patches$P.xcor, df_patches$P.ycor),"euclid")
 
-saveRDS(patch_dists, "patch_dists.rds")
+saveRDS(patch_dists, "~/soraida_r/patch_dists.rds")

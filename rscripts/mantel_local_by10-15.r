@@ -12,15 +12,16 @@ loadPackages()
 # create a df containing all patch coordinates, make headers same
 # and remove richness and block columns
 df_patches <- fread("PatchRichnessEnd-101.csv")
-colnames(df_patches)[1] <- "P.xcor"
-colnames(df_patches)[2] <- "P.ycor"
-df_patches <- df_patches[,-c(3:5)]
-head(df_patches)
-
-# change df_patches headers to X and Y
 colnames(df_patches)[1] <- "X"
 colnames(df_patches)[2] <- "Y"
-#head(df_patches) # quick check
+colnames(df_patches)[3] <- "patch.ID"
+df_patches <- df_patches[,-c(4:5)]
+head(df_patches)
+
+# sort the patch list
+df_patches <- df_patches[order(df_patches[["patch.ID"]]),]
+df_patches <- df_patches[,-3]
+head(df_patches)
 
 # make break points
 break_points <- seq(0, 30, by = 2)

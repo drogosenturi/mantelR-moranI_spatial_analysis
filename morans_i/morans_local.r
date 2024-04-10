@@ -23,17 +23,18 @@ head(file_path)
 # local moran test
 local_moran <- function(i) {
     localfiles <- read.csv(file_path[i])
-    localfiles <- localfiles[order(localfiles$patch.ID),]
-    localfiles <- as.vector(localfiles[[5]])
+    localfiles <- localfiles[order(localfiles[["patch.ID"]]),]
+    localfiles <- as.vector(localfiles[["patch.richness"]])
     result <- pgirmess::correlog(coords = coordxy, z = localfiles,
                                  nbclass = 15)
     return(
         result
     )
 }
+
 ## RUN 1
 message("local test start 1: ", Sys.time())
-result <- mclapply(1:120, local_moran, mc.preschedule=FALSE, mc.cores = 40)
+result <- mclapply(1:120, local_moran, mc.cores = 40)
 message("local test finish 1: ", Sys.time())
 
 # save as RDS
@@ -43,7 +44,7 @@ gc()
 
 ## RUN 2
 message("local test start 2: ", Sys.time())
-result <- mclapply(121:240, local_moran, mc.preschedule=FALSE, mc.cores = 40)
+result <- mclapply(121:240, local_moran, mc.cores = 40)
 message("local test finish 2: ", Sys.time())
 
 # save as RDS
@@ -53,7 +54,7 @@ gc()
 
 ## RUN 3
 message("local test start 3: ", Sys.time())
-result <- mclapply(241:360, local_moran, mc.preschedule=FALSE, mc.cores = 40)
+result <- mclapply(241:360, local_moran, mc.cores = 40)
 message("local test finish 3: ", Sys.time())
 
 # save as RDS
@@ -63,7 +64,7 @@ gc()
 
 ## RUN 4
 message("local test start 4: ", Sys.time())
-result <- mclapply(361:480, local_moran, mc.preschedule=FALSE, mc.cores = 40)
+result <- mclapply(361:480, local_moran, mc.cores = 40)
 message("local test finish 4: ", Sys.time())
 
 # save as RDS
@@ -73,7 +74,7 @@ gc()
 
 ## RUN 5
 message("local test start 5: ", Sys.time())
-result <- mclapply(481:500, local_moran, mc.preschedule=FALSE, mc.cores = 40)
+result <- mclapply(481:500, local_moran, mc.cores = 40)
 message("local test finish 5: ", Sys.time())
 
 # save as RDS
