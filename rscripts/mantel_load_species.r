@@ -77,15 +77,14 @@ fill_in_coords <- function(i) {
     )
 }
 dfcoords <- mclapply(1:500, fill_in_coords, mc.cores = 40)
-#length(as.data.frame(dffin[[7]])[,1]) # check length
 rm(dfSO)
 
 # sort the final dataframe
 sort_dfcoords <- function(i) {
     df_temp <- as.data.frame(dfcoords[[i]])
-    df_temp <- df_temp[order(df_temp[["patch.ID"]]),]
+    df_sort <- df_temp[order(df_temp[["patch.ID"]]), ]
     return(
-        df_temp
+        df_sort
     )
 }
 dffin <- mclapply(1:500, sort_dfcoords, mc.cores = 40)

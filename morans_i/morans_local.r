@@ -8,7 +8,7 @@ setwd('~/mantel_files/mimicry_runs/')
 # read in coordinates
 coordsdata <- read.csv("PatchRichnessEnd-101.csv", header = TRUE)
 # order the data by patchID
-coordsdata <- coordsdata[order(coordsdata$patch.ID),]
+coordsdata <- coordsdata[order(coordsdata[["patch.ID"]]),]
 
 # extract only xy
 coordxy <- coordsdata[,1:2]
