@@ -61,7 +61,7 @@ gc()
 species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_81-120.rds")
 
 # apply function
-result <- mclapply(1:40, mantel_global, mc.cores = 15, mc.preschedule = FALSE)
+result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
 saveRDS(result, "~/mantel_files/global_results/global_81-120.rds")
@@ -93,7 +93,7 @@ gc()
 species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_161-200.rds")
 
 # apply function
-result <- mclapply(1:40, mantel_global, mc.cores = 10)
+result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
 saveRDS(result, "~/mantel_files/global_results/global_161-200.rds")
