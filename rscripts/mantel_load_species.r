@@ -29,8 +29,9 @@ df_patches <- df_patches[,-c(4:5)]
 head(df_patches)
 
 # sort the patch list
-df_patches_sorted <- df_patches[order(df_patches[["patch.ID"]]),]
-head(df_patches_sorted[,3])
+df_patches <- df_patches[order(df_patches[["patch.ID"]]),]
+df_patches <- df_patches[,-3]
+head(df_patches)
 
 # list of DF with each item being full dataframe
 load_df <- function(z) {
@@ -82,13 +83,13 @@ rm(dfSO)
 # sort the final dataframe
 sort_dfcoords <- function(i) {
     df_temp <- as.data.frame(dfcoords[[i]])
-    df_sort <- df_temp[order(df_temp[["patch.ID"]]), ]
+    df_temp <- df_temp[order(df_temp[["patch.ID"]]), ]
     return(
-        df_sort
+        df_temp
     )
 }
 dffin <- mclapply(1:500, sort_dfcoords, mc.cores = 40)
-head(dffin[[1]][,3])
+head(dffin[[1]])
 head(dffin[[100]][,3])
 
 # clean up the garbage
