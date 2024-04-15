@@ -16,7 +16,7 @@ coordxy <- coordsdata[,1:2]
 rm(coordsdata) #remove old
 
 # create inverted matrix, with diag at 0
-coordmatrix <- dist(coordxy)
+coordmatrix <- as.matrix(dist(coordxy))
 rm(coordxy)
 coordmatrix.inv <- 1/coordmatrix
 rm(coordmatrix)
