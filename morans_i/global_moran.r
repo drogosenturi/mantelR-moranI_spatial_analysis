@@ -62,7 +62,7 @@ gc()
 
 ## RUN 3
 message("global test start 3: ", Sys.time())
-result <- mclapply(241:360, global_moran, mc.cores = 40)
+result <- mclapply(241:360, global_moran, mc.preschedule = FALSE, mc.cores = 40)
 message("local test finish 3: ", Sys.time())
 
 # save as RDS
