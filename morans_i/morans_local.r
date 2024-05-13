@@ -26,7 +26,7 @@ local_moran <- function(i) {
     localfiles <- localfiles[order(localfiles[["patch.ID"]]),]
     localfiles <- as.vector(localfiles[["patch.richness"]])
     result <- pgirmess::correlog(coords = coordxy, z = localfiles,
-                                 nbclass = 15)
+                                 nbclass = 68)
     return(
         result
     )
