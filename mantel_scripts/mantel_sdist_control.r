@@ -1,6 +1,6 @@
-##              Species distances for four nurseries            ##
+##              Species distances for control experiment            ##
 message("start ", Sys.time())
-setwd("~/mantel_files/nurs_runs/")
+setwd("~/mantel_files/control_runs/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/") #home desktop
 ## Create function to load all packages
 loadPackages <- function(packages) {
@@ -37,7 +37,7 @@ head(df_patches)
 load_df <- function(z) {
     fread(file_path[z])
 }
-df_list <- mclapply(1:240, load_df, mc.cores = 40)
+df_list <- mclapply(1:10, load_df, mc.cores = 10)
 rm(file_path)
 
 # make list of new dfs with just species id and patchid
@@ -49,7 +49,7 @@ fix_df <- function(z) {
     colnames(df_temp)[3] <- "patch.ID"
     return(df_temp[c("P.xcor", "P.ycor", "patch.ID", "Species")])
 }
-dff <- mclapply(1:240, fix_df, mc.cores = 40) # put list into dff
+dff <- mclapply(1:10, fix_df, mc.cores = 10) # put list into dff
 rm(df_list)
 
 # tidyverse it up and make species occurrence table
@@ -65,7 +65,7 @@ to_SO <- function(i) {
                         values_fill = 0)
     )
 }
-dfSO <- mclapply(1:240, to_SO, mc.cores = 40)
+dfSO <- mclapply(1:10, to_SO, mc.cores = 10)
 rm(dff)
 
 # fill in missing coordinates for all df in dfSO
@@ -77,7 +77,7 @@ fill_in_coords <- function(i) {
         joined
     )
 }
-dfcoords <- mclapply(1:240, fill_in_coords, mc.cores = 40)
+dfcoords <- mclapply(1:10, fill_in_coords, mc.cores = 10)
 rm(dfSO)
 
 # sort the final dataframe
@@ -88,7 +88,7 @@ sort_dfcoords <- function(i) {
         df_temp
     )
 }
-dffin <- mclapply(1:240, sort_dfcoords, mc.cores = 40)
+dffin <- mclapply(1:10, sort_dfcoords, mc.cores = 10)
 head(dffin[[1]])
 head(dffin[[100]][,3])
 
@@ -108,41 +108,8 @@ make_sdist <- function(i) {
 
 # make species_dists and load in batches of 40
 message("batch 1")
-species_dists <- mclapply(1:40, make_sdist, mc.cores = 40)
-is.nan(species_dists[[1]])
-saveRDS(species_dists, "~/mantel_files/4nurs_result/sp_dist_nursery_1-40.rds")
+species_dists <- mclapply(1:10, make_sdist, mc.cores = 10)
+#save file
+saveRDS(species_dists, "~/mantel_files/cntrl_result/sp_dist_control_1-10.rds")
 rm(species_dists)
-gc()
-
-message("batch 2")
-species_dists <- mclapply(41:80, make_sdist, mc.cores = 40)
-saveRDS(species_dists, "~/mantel_files/4nurs_result/sp_dist_nursery_41-80.rds")
-rm(species_dists)
-gc()
-
-message("batch 3")
-species_dists <- mclapply(81:120, make_sdist, mc.cores = 40)
-saveRDS(species_dists, "~/mantel_files/4nurs_result/sp_dist_nursery_81-120.rds")
-rm(species_dists)
-gc()
-
-message("batch 4")
-species_dists <- mclapply(121:160, make_sdist, mc.cores = 40)
-saveRDS(species_dists, "~/mantel_files/4nurs_result/sp_dist_nursery_121-160.rds")
-rm(species_dists)
-gc()
-
-message("batch 5")
-species_dists <- mclapply(161:200, make_sdist, mc.cores = 40)
-saveRDS(species_dists, "~/mantel_files/4nurs_result/sp_dist_nursery_161-200.rds")
-rm(species_dists)
-gc()
-
-message("batch 6")
-species_dists <- mclapply(201:240, make_sdist, mc.cores = 40)
-saveRDS(species_dists, "~/mantel_files/4nurs_result/sp_dist_nursery_201-240.rds")
-rm(species_dists)
-gc()
-
-message("finished ", Sys.time())
 q()
