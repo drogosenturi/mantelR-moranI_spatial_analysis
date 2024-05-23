@@ -89,8 +89,6 @@ sort_dfcoords <- function(i) {
     )
 }
 dffin <- mclapply(1:10, sort_dfcoords, mc.cores = 10)
-head(dffin[[1]])
-head(dffin[[100]][,3])
 
 # clean up the garbage
 gc()
