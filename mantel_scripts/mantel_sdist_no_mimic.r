@@ -26,12 +26,10 @@ colnames(df_patches)[1] <- "P.xcor"
 colnames(df_patches)[2] <- "P.ycor"
 colnames(df_patches)[3] <- "patch.ID"
 df_patches <- df_patches[,-c(4:5)]
-head(df_patches)
 
 # sort the patch list
 df_patches <- df_patches[order(df_patches[["patch.ID"]]),]
 df_patches <- df_patches[,-3]
-head(df_patches)
 
 # list of DF with each item being full dataframe
 load_df <- function(z) {
@@ -89,8 +87,6 @@ sort_dfcoords <- function(i) {
     )
 }
 dffin <- mclapply(1:30, sort_dfcoords, mc.cores = 30)
-head(dffin[[1]])
-head(dffin[[100]][,3])
 
 # clean up the garbage
 gc()
