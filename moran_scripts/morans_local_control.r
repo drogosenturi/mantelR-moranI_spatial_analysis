@@ -38,7 +38,7 @@ result <- mclapply(1:10, local_moran, mc.preschedule = FALSE, mc.cores = 10)
 message("local test finish 1: ", Sys.time())
 
 # save as RDS
-saveRDS(result, "~/moran_files/control/local_results/control_results_1-120.rds")
+saveRDS(result, "~/moran_files/control/local_results/control_results_1-10.rds")
 message("file 1 saved", Sys.time())
 gc()
 q()
