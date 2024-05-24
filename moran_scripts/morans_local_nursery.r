@@ -33,14 +33,14 @@ local_moran <- function(i) {
 }
 
 ## RUN 1
-message("local test start 1: ", Sys.time())
-result <- mclapply(1:120, local_moran, mc.preschedule = FALSE, mc.cores = 40)
-message("local test finish 1: ", Sys.time())
+# message("local test start 1: ", Sys.time())
+# result <- mclapply(1:120, local_moran, mc.preschedule = FALSE, mc.cores = 40)
+# message("local test finish 1: ", Sys.time())
 
-# save as RDS
-saveRDS(result, "~/moran_files/4nurs/local_results/nursery_results_1-120.rds")
-message("file 1 saved", Sys.time())
-gc()
+# # save as RDS
+# saveRDS(result, "~/moran_files/4nurs/local_results/nursery_results_1-120.rds")
+# message("file 1 saved", Sys.time())
+# gc()
 
 ## RUN 2
 message("local test start 2: ", Sys.time())
@@ -48,7 +48,7 @@ result <- mclapply(121:240, local_moran, mc.preschedule = FALSE, mc.cores = 40)
 message("local test finish 2: ", Sys.time())
 
 # save as RDS
-saveRDS(result, "~/moran_files/local_results/nursery_results_121-240.rds")
+saveRDS(result, "~/moran_files/4nurs/local_results/nursery_results_121-240.rds")
 message("file 2 saved", Sys.time())
 gc()
 q()
