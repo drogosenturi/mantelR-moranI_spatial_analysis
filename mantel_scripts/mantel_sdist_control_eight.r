@@ -108,6 +108,6 @@ make_sdist <- function(i) {
 message("batch 1")
 species_dists <- mclapply(1:10, make_sdist, mc.cores = 10)
 #save file
-saveRDS(species_dists, "~/mantel_files/cntrl_result/sp_dist_cntrl_eight_1-10.rds")
+saveRDS(species_dists, "~/mantel_files/cntrl_8nurs_result/sp_dist_cntrl_eight_1-10.rds")
 rm(species_dists)
 q()
