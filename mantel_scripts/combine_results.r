@@ -5,22 +5,11 @@ library(gridExtra) ## to grid the plots
 library(parallel)
 library(gtools)
 
-# load in results to list 'results'
-results <- readRDS('local_results/*') 
-print(results[[7]]) # check that it's correct
-
-# make it into a dataframe if you want to manipulate it
-df <- as.data.frame(results[[7]][1])
-print(df)
-
-# otherwise, you can just extract that first result with $mantel.res
-results[[1]]$mantel.res
-
-##                 LOCAL MANTEL                ##
+##                 LOCAL MANTEL NURSERIES               ##
 
 # read in all files into one object
-files <- paste0('~/soraida_r/mantel_results/local/',
-                    list.files('~/soraida_r/mantel_results/local/',
+files <- paste0('~/soraida_r/mantel_results/four_nursery/local/',
+                    list.files('~/soraida_r/mantel_results/four_nursery/local/',
                     recursive = TRUE))
 files <- mixedsort(files)
 read_in <- function(i) {
@@ -32,27 +21,18 @@ extracted <- lapply(1:length(files), read_in)
 
 # while loop to extract all 500 results
 i <- 1
-while(i < 39) {
+while(i < (length(extracted) + 1)) {
     new <- append(new, extracted[[i]][1:length(extracted[[i]])])
     i <- i + 1
 }
 new <- new[-1] #remove first object creation line
-saveRDS(new, "~/soraida_r/mantel_results/local/l_mantel_full.rds")
+saveRDS(new, "/home/sokui/soraida_r/mantel_results/four_nursery/local/local_mantel_nursery.rds")
 
-# extract only the mantel results
-l_mantel_vals <- function(i) {
-    return (
-        new[[i]]$mantel.res
-    )
-}
-result_only <- lapply(1:length(new), l_mantel_vals)
-saveRDS(result_only, "~/soraida_r/mantel_results/local/l_mantel_results.rds")
-
-##              GLOBAL MANTEL              ##
+##              GLOBAL MANTEL NURSERIES             ##
 
 # read in
-files <- paste0('~/soraida_r/mantel_results/global/',
-                    list.files('~/soraida_r/mantel_results/global/',
+files <- paste0('/home/sokui/soraida_r/mantel_results/four_nursery/global/',
+                    list.files('/home/sokui/soraida_r/mantel_results/four_nursery/global/',
                     recursive = TRUE))
 files <- mixedsort(files)
 read_in <- function(i) {
@@ -64,27 +44,41 @@ extracted <- lapply(1:length(files), read_in)
 
 # while loop to extract all 500 results
 i <- 1
-while(i < 14) {
+while(i < (length(extracted) + 1)) {
     new <- append(new, extracted[[i]][1:length(extracted[[i]])])
     i <- i + 1
 }
 new <- new[-1] #remove first object creation line
-saveRDS(new, "~/soraida_r/mantel_results/global/g_mantel_full.rds")
+saveRDS(new, "/home/sokui/soraida_r/mantel_results/four_nursery/global/global_mantel_nursery.rds")
 
-# extract only the mantel results
-g_mantel_vals <- function(i) {
-    return (
-        new[[i]][c(3,4)]
+##                 LOCAL MANTEL NO MIMIC               ##
+
+# read in all files into one object
+files <- paste0('/home/sokui/soraida_r/mantel_results/no_mimic/local/',
+                    list.files('/home/sokui/soraida_r/mantel_results/no_mimic/local/',
+                    recursive = TRUE))
+files <- mixedsort(files)
+read_in <- function(i) {
+    return(
+        readRDS(files[i])
     )
 }
-result_only <- lapply(1:length(new), g_mantel_vals)
-saveRDS(result_only, "~/soraida_r/mantel_results/global/g_mantel_results.rds")
+extracted <- lapply(1:length(files), read_in)
+
+# while loop to extract all 500 results
+i <- 1
+while(i < (length(extracted) + 1)) {
+    new <- append(new, extracted[[i]][1:length(extracted[[i]])])
+    i <- i + 1
+}
+new <- new[-1] #remove first object creation line
+saveRDS(new, "/home/sokui/soraida_r/mantel_results/no_mimic/local/local_mantel_nomimic.rds")
 
 ##                 LOCAL MORAN                ##
 
 # read in all files into one object
-files <- paste0('~/soraida_r/moran_results/local/',
-                    list.files('~/soraida_r/moran_results/local/',
+files <- paste0('/home/sokui/soraida_r/moran_results/four_nursery/local/',
+                    list.files('/home/sokui/soraida_r/moran_results/four_nursery/local/',
                     recursive = TRUE))
 files <- mixedsort(files)
 read_in <- function(i) {
@@ -101,22 +95,13 @@ while(i < (length(extracted) + 1)) {
     i <- i + 1
 }
 new <- new[-1] #remove first object creation line
-saveRDS(new, "~/soraida_r/moran_results/local/l_moran_full.rds")
+saveRDS(new, "/home/sokui/soraida_r/moran_results/four_nursery/local/local_moran_nursery.rds")
 
-# extract useful information
-l_mantel_vals <- function(i) {
-    return (
-        new[[i]]$mantel.res
-    )
-}
-result_only <- lapply(1:length(new), l_mantel_vals)
-saveRDS(result_only, "~/soraida_r/moran_results/local/l_moran_results.rds")
-
-##              GLOBAL MANTEL              ##
+##              GLOBAL MORAN              ##
 
 # read in
-files <- paste0('~/soraida_r/moran_results/global/',
-                    list.files('~/soraida_r/moran_results/global/',
+files <- paste0('/home/sokui/soraida_r/moran_results/four_nursery/global/',
+                    list.files('/home/sokui/soraida_r/moran_results/four_nursery/global/',
                     recursive = TRUE))
 files <- mixedsort(files)
 read_in <- function(i) {
@@ -133,16 +118,7 @@ while(i < (length(extracted) + 1)) {
     i <- i + 1
 }
 new <- new[-1] #remove first object creation line
-saveRDS(new, "~/soraida_r/moran_results/global/g_moran_full.rds")
-
-# extract only the mantel results
-g_mantel_vals <- function(i) {
-    return (
-        new[[i]][c(3,4)]
-    )
-}
-result_only <- lapply(1:length(new), g_mantel_vals)
-saveRDS(result_only, "~/soraida_r/moran_results/global/g_moran_results.rds")
+saveRDS(new, "/home/sokui/soraida_r/moran_results/four_nursery/global/global_moran_nursery.rds")
 
 #############################################################################
 
