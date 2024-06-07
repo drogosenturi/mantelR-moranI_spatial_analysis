@@ -74,6 +74,29 @@ while(i < (length(extracted) + 1)) {
 new <- new[-1] #remove first object creation line
 saveRDS(new, "/home/sokui/soraida_r/mantel_results/no_mimic/local/local_mantel_nomimic.rds")
 
+##                 LOCAL MANTEL NO MIMIC               ##
+
+# read in all files into one object
+files <- paste0('/home/sokui/soraida_r/mantel_results/8nurs/local/',
+                    list.files('/home/sokui/soraida_r/mantel_results/8nurs/local/',
+                    recursive = TRUE))
+files <- mixedsort(files)
+read_in <- function(i) {
+    return(
+        readRDS(files[i])
+    )
+}
+extracted <- lapply(1:length(files), read_in)
+
+# while loop to extract all 500 results
+i <- 1
+while(i < (length(extracted) + 1)) {
+    new <- append(new, extracted[[i]][1:length(extracted[[i]])])
+    i <- i + 1
+}
+new <- new[-1] #remove first object creation line
+saveRDS(new, "/home/sokui/soraida_r/mantel_results/8nurs/local/local_mantel_8nurs.rds")
+
 ##                 LOCAL MORAN                ##
 
 # read in all files into one object
