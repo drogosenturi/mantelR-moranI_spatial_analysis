@@ -160,3 +160,7 @@ plot(results[[1]])
 jpeg("test_plot.jpg")
 results[[5]] |> plot()
 dev.off()
+
+# plot single mantel files
+temp <- readRDS('local_1.rds')
+plot(temp[[1]])
