@@ -41,7 +41,7 @@ mantel_vegan <- function(i) {
 message("start 1 ", Sys.time())
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/16nurs_result/sp_dist_16nurs_1.rds")
+species_dists <- readRDS("~/mantel_files/50nurs_result/sp_dist_50nurs_1.rds")
 
 # change to only first 15
 species_dists <- species_dists[1]
@@ -50,6 +50,6 @@ gc()
 v_result <- mclapply(1, mantel_vegan, mc.cores = 1)
 
 # save as rds
-saveRDS(v_result, "~/mantel_files/16nurs_result/local_results/local_1.rds")
+saveRDS(v_result, "~/mantel_files/50nurs_result/local_results/local_1.rds")
 message("finished 1 ", Sys.time())
 q()
