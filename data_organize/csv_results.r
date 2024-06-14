@@ -6,8 +6,11 @@ library(ape)
 # load in 4 nurs no mimic table csv, skip first 6 lines
 #df <- read.csv('~/soraida_r/4nurs_nomimic/table.csv', header = TRUE,
 #                         skip = 6)
+# load in 4nurs
+df <- read.csv('~/mantel_files/4nurs_nomimic/table.csv', header = TRUE,
+                         skip = 6)
 # load in mimicry no nurs
-df <- read.csv('~/mantel_files/nonurs_mimic_runs/table.csv', header = TRUE)
+#df <- read.csv('~/mantel_files/nonurs_mimic_runs/table.csv', header = TRUE)
 # sort by run number
 df <- df[order(df$X.run.number.),]
 df <- df[,-6] #remove step number
