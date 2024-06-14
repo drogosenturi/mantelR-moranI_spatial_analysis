@@ -32,3 +32,20 @@ p_values <- lapply(1:length(g_moran), FUN = function(i){
 four_nomimic$moran_p <- unlist(p_values)
 
 # add in global mantel test values
+g_mantel <- readRDS('~/soraida_r/mantel_results/no_mimic/global/global_mantel_nomimic.rds')
+# extract statistic
+statistic <- lapply(1:length(g_mantel), FUN = function(i){
+    result <- g_mantel[[i]]$statistic
+    return(result)
+})
+# extract p value
+p_value <- lapply(1:length(g_mantel), FUN = function(i){
+    result <- g_mantel[[i]]$signif
+    return(result)
+})
+# add to df
+four_nomimic$global_mantel <- unlist(statistic)
+four_nomimic$mantel_p <- unlist(p_value)
+
+# save to csv
+write.csv(four_nomimic, file = "~/soraida_r/mantel_analysis/data_organize/4_nomimic_globals.csv")
