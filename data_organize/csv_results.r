@@ -4,17 +4,18 @@ library(vegan)
 library(ape)
 
 # load in 4 nurs no mimic table csv, skip first 6 lines
-four_nomimic <- read.csv('~/soraida_r/4nurs_nomimic/table.csv', header = TRUE,
-                         skip = 6)
+#df <- read.csv('~/soraida_r/4nurs_nomimic/table.csv', header = TRUE,
+#                         skip = 6)
+# load in mimicry no nurs
+df <- read.csv('~/mantel_files/nonurs_mimic_runs/table.csv', header = TRUE)
 # sort by run number
-four_nomimic <- four_nomimic[order(four_nomimic$X.run.number.),]
-four_nomimic <- four_nomimic[,-6] #remove step number
+df <- df[order(df$X.run.number.),]
+df <- df[,-6] #remove step number
 
 # add in global moran test values
-g_moran <- readRDS('~/soraida_r/moran_results/no_mimic/global/global_moran_nomimic.rds')
+g_moran <- readRDS('~/moran_files/mimicry/global_results/g_moran_full.rds')
 extract <- function(i) {
-    result <- g_moran[[i]]$observed
-    result1 <- g_moran[[i]]$p.value
+    result <- g_moran[[i]][1]
     return(
         result
     )
@@ -22,17 +23,17 @@ extract <- function(i) {
 # returns list of extracted values
 observed <- lapply(1:length(g_moran), extract)
 # add unlisted values as column
-four_nomimic$global_moran <- unlist(observed)
+df$global_moran <- unlist(observed)
 #function for p.values
 p_values <- lapply(1:length(g_moran), FUN = function(i){
-    result1 <- g_moran[[i]]$p.value
+    result1 <- g_moran[[i]][4]
     return(result1)
 })
 # add column to df
-four_nomimic$moran_p <- unlist(p_values)
+df$moran_p <- unlist(p_values)
 
 # add in global mantel test values
-g_mantel <- readRDS('~/soraida_r/mantel_results/no_mimic/global/global_mantel_nomimic.rds')
+g_mantel <- readRDS('~/mantel_files/nonurs_mimic_result/global_results/g_mantel_full.rds')
 # extract statistic
 statistic <- lapply(1:length(g_mantel), FUN = function(i){
     result <- g_mantel[[i]]$statistic
@@ -44,8 +45,9 @@ p_value <- lapply(1:length(g_mantel), FUN = function(i){
     return(result)
 })
 # add to df
-four_nomimic$global_mantel <- unlist(statistic)
-four_nomimic$mantel_p <- unlist(p_value)
+df$global_mantel <- unlist(statistic)
+df$mantel_p <- unlist(p_value)
 
 # save to csv
-write.csv(four_nomimic, file = "~/soraida_r/mantel_analysis/data_organize/4_nomimic_globals.csv")
+#write.csv(df, file = "~/soraida_r/mantel_analysis/data_organize/4_nomimic_globals.csv")
+write.csv(df, file = "~/mantel_lab/data_organize/nonurs_mimic_globals.csv")

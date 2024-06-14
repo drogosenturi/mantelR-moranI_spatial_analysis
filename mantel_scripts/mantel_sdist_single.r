@@ -1,6 +1,6 @@
 ##              Species distances for control experiment            ##
 message("start ", Sys.time())
-setwd("~/mantel_files/50nurs_runs/")
+setwd("~/mantel_files/16nurs100_runs/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/") #home desktop
 ## Create function to load all packages
 loadPackages <- function(packages) {
@@ -20,8 +20,9 @@ file_path <- mixedsort(file_path, decreasing=TRUE)
 
 # create a df containing all patch coordinates, make headers same
 # and remove richness and block columns
-df_patches <- fread("~/mantel_lab/nursery_files/PatchRichnessEnd-101.csv")
+#df_patches <- fread("~/mantel_lab/nursery_files/PatchRichnessEnd-101.csv")
 #df_patches <- fread("PatchRichnessEnd-101.csv") #for home desktop
+df_patches <- fread('~/mantel_files/16nurs100_runs/PatchRichnessEnd-0.csv')
 colnames(df_patches)[1] <- "P.xcor"
 colnames(df_patches)[2] <- "P.ycor"
 colnames(df_patches)[3] <- "patch.ID"
@@ -108,6 +109,6 @@ make_sdist <- function(i) {
 message("batch 1")
 species_dists <- mclapply(1, make_sdist, mc.cores = 1)
 #save file
-saveRDS(species_dists, "~/mantel_files/50nurs_result/sp_dist_50nurs_1.rds")
+saveRDS(species_dists, "~/mantel_files/16nurs100_result/sp_dist_16nurs_1.rds")
 rm(species_dists)
 q()

@@ -1,6 +1,7 @@
 ## script to make patch_dists and save as RDS
 #setwd("~/mantel_lab/nursery_files/")
-setwd("~/soraida_r/mantel_analysis/nursery_files/")
+#setwd("~/soraida_r/mantel_analysis/nursery_files/")
+setwd('~/mantel_files/16nurs100_runs/')
 # function to load all packages
 loadPackages <- function(packages) {
     lapply(c("data.table", "parallel",
@@ -9,7 +10,7 @@ loadPackages <- function(packages) {
 }
 loadPackages()
 
-df_patches <- fread("PatchRichnessEnd-101.csv")
+df_patches <- fread("PatchRichnessEnd-0.csv")
 colnames(df_patches)[1] <- "P.xcor"
 colnames(df_patches)[2] <- "P.ycor"
 colnames(df_patches)[3] <- "patch.ID"
@@ -23,4 +24,4 @@ head(df_patches)
 
 patch_dists <- vegdist(cbind(df_patches$P.xcor, df_patches$P.ycor),"euclid")
 
-saveRDS(patch_dists, "~/soraida_r/patch_dists.rds")
+saveRDS(patch_dists, "~/mantel_files/16nurs100_result/patch_dists.rds")
