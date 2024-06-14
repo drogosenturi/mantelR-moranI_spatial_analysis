@@ -1,6 +1,6 @@
 ##              Species distances for control experiment            ##
 message("start ", Sys.time())
-setwd("~/mantel_files/50nurs/")
+setwd("~/mantel_files/50nurs_runs/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/") #home desktop
 ## Create function to load all packages
 loadPackages <- function(packages) {
