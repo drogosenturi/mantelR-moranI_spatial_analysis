@@ -162,5 +162,6 @@ results[[5]] |> plot()
 dev.off()
 
 # plot single mantel files
+setwd('~/mantel_files/50nurs_result/local_results/')
 temp <- readRDS('local_1.rds')
 plot(temp[[1]])
