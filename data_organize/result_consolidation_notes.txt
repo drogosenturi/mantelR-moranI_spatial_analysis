@@ -1,0 +1,4 @@
+Select only the final runs from each table.csv
+Confirm they are the correct length and numbered from 1-length
+Match up run numbers to mantel and moran's global results
+Add column for global results and p-values (if applicable)

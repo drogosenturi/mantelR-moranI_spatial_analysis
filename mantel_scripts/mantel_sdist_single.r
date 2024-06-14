@@ -1,6 +1,6 @@
 ##              Species distances for control experiment            ##
 message("start ", Sys.time())
-setwd("~/mantel_files/control_runs/")
+setwd("~/mantel_files/50nurs/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/") #home desktop
 ## Create function to load all packages
 loadPackages <- function(packages) {
@@ -108,6 +108,6 @@ make_sdist <- function(i) {
 message("batch 1")
 species_dists <- mclapply(1, make_sdist, mc.cores = 1)
 #save file
-saveRDS(species_dists, "~/mantel_files/16nurs_result/sp_dist_16nurs_1.rds")
+saveRDS(species_dists, "~/mantel_files/50nurs_result/sp_dist_50nurs_1.rds")
 rm(species_dists)
 q()
