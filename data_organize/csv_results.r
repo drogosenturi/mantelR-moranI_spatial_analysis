@@ -7,16 +7,16 @@ library(ape)
 #df <- read.csv('~/soraida_r/4nurs_nomimic/table.csv', header = TRUE,
 #                         skip = 6)
 # load in 4nurs
-df <- read.csv('~/mantel_files/4nurs_nomimic/table.csv', header = TRUE,
+df <- read.csv('~/soraida_r/4nurs_cntrl/table.csv', header = TRUE,
                          skip = 6)
 # load in mimicry no nurs
 #df <- read.csv('~/mantel_files/nonurs_mimic_runs/table.csv', header = TRUE)
 # sort by run number
 df <- df[order(df$X.run.number.),]
-df <- df[,-6] #remove step number
+df <- df[,-6] #remove step number, changes based on file
 
 # add in global moran test values
-g_moran <- readRDS('~/moran_files/mimicry/global_results/g_moran_full.rds')
+g_moran <- readRDS('~/soraida_r/moran_results/control/global/global_moran_control.rds')
 extract <- function(i) {
     result <- g_moran[[i]][1]
     return(
@@ -36,7 +36,7 @@ p_values <- lapply(1:length(g_moran), FUN = function(i){
 df$moran_p <- unlist(p_values)
 
 # add in global mantel test values
-g_mantel <- readRDS('~/mantel_files/nonurs_mimic_result/global_results/g_mantel_full.rds')
+g_mantel <- readRDS('~/soraida_r/mantel_results/control/global/global_mantel_control.rds')
 # extract statistic
 statistic <- lapply(1:length(g_mantel), FUN = function(i){
     result <- g_mantel[[i]]$statistic
@@ -52,5 +52,5 @@ df$global_mantel <- unlist(statistic)
 df$mantel_p <- unlist(p_value)
 
 # save to csv
-#write.csv(df, file = "~/soraida_r/mantel_analysis/data_organize/4_nomimic_globals.csv")
-write.csv(df, file = "~/mantel_lab/data_organize/nonurs_mimic_globals.csv")
+write.csv(df, file = "~/soraida_r/mantel_analysis/data_organize/4nurs_cntrl_globals.csv")
+#write.csv(df, file = "~/mantel_lab/data_organize/nonurs_mimic_globals.csv")
