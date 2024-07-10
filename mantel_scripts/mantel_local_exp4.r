@@ -1,5 +1,5 @@
 ##              Mantel local for experiment 4           ##
-setwd("~/mantel_lab/exp4/runs/")
+setwd("~/mantel_files/exp4/runs/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/")
 ## Create function to load all packages
 loadPackages <- function(packages) {
