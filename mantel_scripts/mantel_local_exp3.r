@@ -9,19 +9,8 @@ loadPackages <- function(packages) {
 }
 loadPackages()
 
-# create a df containing all patch coordinates, make headers same
-# and remove richness and block columns
-df_patches <- fread("PatchRichnessEnd-1.csv")
-colnames(df_patches)[1] <- "X"
-colnames(df_patches)[2] <- "Y"
-colnames(df_patches)[3] <- "patch.ID"
-df_patches <- df_patches[,-c(4:5)]
-head(df_patches)
-
-# sort the patch list
-df_patches <- df_patches[order(df_patches[["patch.ID"]]),]
-df_patches <- df_patches[,-3]
-head(df_patches)
+# load in patch dists
+patch_dists <- readRDS("~/mantel_files/patch_dists.rds")
 
 # make break points
 break_points <- seq(0, 30, by = 2)
@@ -29,7 +18,7 @@ break_points <- seq(0, 30, by = 2)
 # local mantel correlogram with vegan
 mantel_vegan <- function(i) {
     result <- mantel.correlog(species_dists[[i]],
-                              XY = df_patches,
+                              D.geo = patch_dists,
                               break.pts = break_points,
                               cutoff = FALSE, nperm=100)
     return(
