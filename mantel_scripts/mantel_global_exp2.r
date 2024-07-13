@@ -1,5 +1,5 @@
 ## script for global mantel analysis
-setwd("~/mantel_lab/")
+setwd("~/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/")
 
 # load in packages
@@ -26,13 +26,13 @@ Sys.sleep(10)
 message("start 1 ", Sys.time())
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_1-40.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_1-40.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_1-40.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_1-40.rds")
 Sys.sleep(10)
 message("finished 1 ", Sys.time())
 
@@ -42,13 +42,13 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_41-80.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_41-80.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_41-80.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_41-80.rds")
 Sys.sleep(10)
 message("finished 2 ", Sys.time())
 
@@ -58,13 +58,13 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_81-120.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_81-120.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_81-120.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_81-120.rds")
 Sys.sleep(10)
 message("finished 3 ", Sys.time())
 
@@ -74,13 +74,13 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_121-160.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_121-160.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_121-160.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_121-160.rds")
 Sys.sleep(10)
 message("finished 4 ", Sys.time())
 
@@ -90,13 +90,13 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_161-200.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_161-200.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_161-200.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_161-200.rds")
 Sys.sleep(10)
 message("finished 5 ", Sys.time())
 
@@ -106,14 +106,14 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_201-240.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_201-240.rds")
 Sys.sleep(10)
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_201-240.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_201-240.rds")
 Sys.sleep(10)
 message("finished 6 ", Sys.time())
 
@@ -123,14 +123,14 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_241-280.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_241-280.rds")
 Sys.sleep(10)
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_241-280.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_241-280.rds")
 Sys.sleep(10)
 message("finished 7 ", Sys.time())
 
@@ -140,13 +140,13 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_281-320.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_281-320.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_281-320.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_281-320.rds")
 Sys.sleep(10)
 message("finished 8 ", Sys.time())
 
@@ -156,13 +156,13 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_321-360.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_321-360.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_321-360.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_321-360.rds")
 Sys.sleep(10)
 message("finished 9 ", Sys.time())
 
@@ -172,13 +172,13 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_361-400.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_361-400.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_361-400.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_361-400.rds")
 Sys.sleep(10)
 message("finished 10 ", Sys.time())
 
@@ -188,13 +188,13 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_401-440.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_401-440.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_401-440.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_401-440.rds")
 Sys.sleep(10)
 message("finished 11 ", Sys.time())
 
@@ -204,28 +204,12 @@ rm(list = c('species_dists', 'result'))
 gc()
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_441-480.rds")
+species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_441-480.rds")
 
 # apply function
 result <- mclapply(1:40, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/global_results/global_441-480.rds")
+saveRDS(result, "~/mantel_files/exp2/result/global/global_441-480.rds")
 Sys.sleep(10)
 message("finished 12 ", Sys.time())
-
-## RUN 13
-message("start 13 ", Sys.time())
-rm(list = c('species_dists', 'result'))
-gc()
-
-# load in species_dists
-species_dists <- readRDS("~/mantel_files/sp_dist_mimicry_481-500.rds")
-
-# apply function
-result <- mclapply(1:20, mantel_global, mc.cores = 10)
-
-# save result
-saveRDS(result, "~/mantel_files/global_results/global_481-500.rds")
-Sys.sleep(10)
-message("finished 13 ", Sys.time())
