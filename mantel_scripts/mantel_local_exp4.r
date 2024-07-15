@@ -36,7 +36,7 @@ species_dists <- readRDS("~/mantel_files/exp4/result/sp_dist_exp4_1-30.rds")
 species_dists <- species_dists[1:15]
 gc()
 
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp4/result/local/local_1-15.rds")
@@ -56,7 +56,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp4/result/local/local_16-30.rds")
