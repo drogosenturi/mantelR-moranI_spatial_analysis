@@ -36,7 +36,7 @@ species_dists <- readRDS("~/mantel_files/exp2/result/sp_dist_exp2_1-40.rds")
 species_dists <- species_dists[1:15]
 gc()
 
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_1-15.rds")
@@ -56,7 +56,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_16-30.rds")
@@ -76,7 +76,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_31-40.rds")
@@ -96,7 +96,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_41-55.rds")
@@ -116,7 +116,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_56-70.rds")
@@ -136,7 +136,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_71-80.rds")
@@ -156,7 +156,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_81-95.rds")
@@ -176,7 +176,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_96-110.rds")
@@ -196,7 +196,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_111-120.rds")
@@ -216,7 +216,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_121-135.rds")
@@ -236,7 +236,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_136-150.rds")
@@ -256,7 +256,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_151-160.rds")
@@ -276,7 +276,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_161-175.rds")
@@ -296,7 +296,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_176-190.rds")
@@ -316,7 +316,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_191-200.rds")
@@ -336,7 +336,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_201-215.rds")
@@ -356,7 +356,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_216-230.rds")
@@ -376,7 +376,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_231-240.rds")
@@ -396,7 +396,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_241-255.rds")
@@ -416,7 +416,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_256-270.rds")
@@ -436,7 +436,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_271-280.rds")
@@ -456,7 +456,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_281-295.rds")
@@ -476,7 +476,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_296-310.rds")
@@ -496,7 +496,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_311-320.rds")
@@ -516,7 +516,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_321-335.rds")
@@ -536,7 +536,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_336-350.rds")
@@ -556,7 +556,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_351-360.rds")
@@ -576,7 +576,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_361-375.rds")
@@ -596,7 +596,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_376-390.rds")
@@ -616,7 +616,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_391-400.rds")
@@ -636,7 +636,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_401-415.rds")
@@ -656,7 +656,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_416-430.rds")
@@ -676,7 +676,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_431-440.rds")
@@ -696,7 +696,7 @@ species_dists <- species_dists[1:15]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_441-455.rds")
@@ -716,7 +716,7 @@ species_dists <- species_dists[16:30]
 gc()
 
 # run mantel
-v_result <- mclapply(1:15, mantel_vegan, mc.cores = 15)
+v_result <- mclapply(1:15, mantel_vegan, mc.preschedule = FALSE, mc.cores = 15)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_456-470.rds")
@@ -736,7 +736,7 @@ species_dists <- species_dists[31:40]
 gc()
 
 # run mantel
-v_result <- mclapply(1:10, mantel_vegan, mc.cores = 10)
+v_result <- mclapply(1:10, mantel_vegan, mc.preschedule = FALSE, mc.cores = 10)
 
 # save as rds
 saveRDS(v_result, "~/mantel_files/exp2/result/local/local_471-480.rds")
