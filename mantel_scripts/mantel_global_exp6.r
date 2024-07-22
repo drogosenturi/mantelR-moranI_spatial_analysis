@@ -1,4 +1,4 @@
-## script for global mantel experiment 4
+## script for global mantel experiment 6
 setwd("~/")
 #setwd("~/soraida_r/mantel_analysis/nursery_files/")
 
@@ -26,12 +26,12 @@ Sys.sleep(10)
 message("start 1 ", Sys.time())
 
 # load in species_dists
-species_dists <- readRDS("~/mantel_files/exp4/result/sp_dist_exp4_1-30.rds")
+species_dists <- readRDS("~/mantel_files/exp6/result/sp_dist_exp6_1-30.rds")
 
 # apply function
 result <- mclapply(1:30, mantel_global, mc.cores = 15)
 
 # save result
-saveRDS(result, "~/mantel_files/exp4/result/global/global_1-30.rds")
+saveRDS(result, "~/mantel_files/exp6/result/global/global_1-30.rds")
 message("finished 1 ", Sys.time())
 q()
