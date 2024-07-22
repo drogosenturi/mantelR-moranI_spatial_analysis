@@ -1,4 +1,4 @@
-##              GLOBAL MORANS EXPERIMENT 6                ##
+##              GLOBAL MORANS EXPERIMENT 6 UPDATE                ##
 library(parallel)
 library(ape)
 library(gtools)
