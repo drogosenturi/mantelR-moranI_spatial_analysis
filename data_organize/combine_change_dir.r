@@ -8,8 +8,8 @@ library(gtools)
 ##                 LOCAL MANTEL EXPERIMENT 1               ##
 
 # read in all files into one object
-files <- paste0('~/soraida_r/mantel_results/exp6/local/',
-                    list.files('~/soraida_r/mantel_results/exp6/local/',
+files <- paste0('~/soraida_r/mantel_results/exp1/local/',
+                    list.files('~/soraida_r/mantel_results/exp1/local/',
                     recursive = TRUE))
 files <- mixedsort(files)
 read_in <- function(i) {
@@ -26,14 +26,14 @@ while(i < (length(extracted) + 1)) {
     i <- i + 1
 }
 new <- new[-1] #remove first object creation line
-saveRDS(new, "/home/sokui/soraida_r/mantel_results/exp6/local/exp6_mantel_local.rds")
+saveRDS(new, "/home/sokui/soraida_r/mantel_results/exp1/local/exp1_mantel_local.rds")
 rm(list = c("new", "files", "i", "extracted"))
 
 ##              GLOBAL MANTEL EXPERIMENT 1             ##
 
 # read in
-files <- paste0('/home/sokui/soraida_r/mantel_results/exp6/global/',
-                    list.files('/home/sokui/soraida_r/mantel_results/exp6/global/',
+files <- paste0('/home/sokui/soraida_r/mantel_results/exp1/global/',
+                    list.files('/home/sokui/soraida_r/mantel_results/exp1/global/',
                     recursive = TRUE))
 files <- mixedsort(files)
 read_in <- function(i) {
@@ -50,14 +50,14 @@ while(i < (length(extracted) + 1)) {
     i <- i + 1
 }
 new <- new[-1] #remove first object creation line
-saveRDS(new, "/home/sokui/soraida_r/mantel_results/exp6/global/exp6_global_mantel.rds")
+saveRDS(new, "/home/sokui/soraida_r/mantel_results/exp1/global/exp1_global_mantel.rds")
 rm(list = c("new", "files", "i", "extracted"))
 
 ##                 LOCAL MORAN EXPERIMENT 1                ##
 
 # read in all files into one object
-files <- paste0('/home/sokui/soraida_r/moran_results/exp6/local/',
-                    list.files('/home/sokui/soraida_r/moran_results/exp6/local/',
+files <- paste0('/home/sokui/soraida_r/moran_results/exp1/local/',
+                    list.files('/home/sokui/soraida_r/moran_results/exp1/local/',
                     recursive = TRUE))
 files <- mixedsort(files)
 read_in <- function(i) {
@@ -74,14 +74,14 @@ while(i < (length(extracted) + 1)) {
     i <- i + 1
 }
 new <- new[-1] #remove first object creation line
-saveRDS(new, "/home/sokui/soraida_r/moran_results/exp6/local/exp6_moran_local.rds")
+saveRDS(new, "/home/sokui/soraida_r/moran_results/exp1/local/exp1_moran_local.rds")
 rm(list = c("new", "files", "i", "extracted"))
 
 ##              GLOBAL MORAN EXPERIMENT 1              ##
 
 # read in
-files <- paste0('/home/sokui/soraida_r/moran_results/exp6/global/',
-                    list.files('/home/sokui/soraida_r/moran_results/exp6/global/',
+files <- paste0('/home/sokui/soraida_r/moran_results/exp1/global/',
+                    list.files('/home/sokui/soraida_r/moran_results/exp1/global/',
                     recursive = TRUE))
 files <- mixedsort(files)
 read_in <- function(i) {
@@ -98,4 +98,4 @@ while(i < (length(extracted) + 1)) {
     i <- i + 1
 }
 new <- new[-1] #remove first object creation line
-saveRDS(new, "/home/sokui/soraida_r/moran_results/exp6/global/exp6_moran_global.rds")
+saveRDS(new, "/home/sokui/soraida_r/moran_results/exp1/global/exp1_moran_global.rds")
